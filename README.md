@@ -1,5 +1,7 @@
 # Västtrafik API
 
+Technologies used TypeScript and NodeJS
+
 ## Developers
 
 [Sebastian Johansson](https://www.linkedin.com/in/sebastian-johansson-3a692617b/) <br>
