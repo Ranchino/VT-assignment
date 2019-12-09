@@ -17,13 +17,10 @@ const app = express_1.default();
 const port = 3000;
 app.use('/api', BodyParser.json());
 // Define our routes
-app.use(express_1.default.static('public'));
+app.use(express_1.default.static('./build/client'));
 app.get('/api/?', (req, res) => {
     res.setHeader("Content-Type", "application/json");
     res.send({ response: "It works!" });
 });
-/* app.get('/', function(req, res){
-    res.sendFile(path.join(__dirname+'/public/static/web/index.html'));
-  }); */
 // Start server
 app.listen(port, () => console.log('Server is running at port ' + port));

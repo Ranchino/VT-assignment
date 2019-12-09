@@ -26,7 +26,7 @@ function explore(root, filter, output) {
 
 function copy_files(files) {
 	files
-		.map(filename => filename.replace(/src\//, ''))
+		.map(filename => filename.replace(/src[\/\\]/, ''))
 		.map(filename => [path.join(root, filename), path.join(outdir, filename)])
 		.forEach(([src, dst]) => {
 			const dir = path.dirname(dst)
