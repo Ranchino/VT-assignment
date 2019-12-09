@@ -14,7 +14,8 @@ export function authentication(){
         headers
     })
     .then(function(response){
-        console.log("SUCCESS: ", response.data)
+        accessToken = response.data.access_token
+        console.log(accessToken)
 
     }).catch(function(error) {
         console.log("ERROR: ", error)
