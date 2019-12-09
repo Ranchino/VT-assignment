@@ -12,9 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const BodyParser = __importStar(require("body-parser"));
 const express_1 = __importDefault(require("express"));
+const routes = require('./routes/routes');
 // Init express and set port
 const app = express_1.default();
 const port = 3000;
+app.use('/', routes);
 app.use('/api', BodyParser.json());
 // Define our routes
 app.use(express_1.default.static('./build/client'));
