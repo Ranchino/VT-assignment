@@ -2,7 +2,8 @@
 
 Technologies used TypeScript and NodeJS
 
-Run `npm start`
+1. `npm install`
+2. `nodemon index.js`
 
 ## Developers
 
