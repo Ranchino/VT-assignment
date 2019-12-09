@@ -1,6 +1,6 @@
 const express = require('express');
 const axios = require('axios');
-const app = express();
+/* const app = express();
 const http = require('http').createServer(app);
 const path = require('path');
 const bodyparser = require('body-parser');
@@ -23,4 +23,4 @@ app.get('/', function(req, res){
 
 http.listen(1337, function(){
     console.log('Listening on 1337');
-});
+}); */

@@ -1,0 +1,23 @@
+{
+  "name": "ts-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "copy-deps": "node copy-deps.js",
+    "start": "nodemon -e ts,html,css -w src --exec \"npm run dev\"",
+    "dev": "tsc && npm run copy-deps && node ./public/static/script/app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/body-parser": "^1.17.1",
+    "@types/express": "^4.17.2",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^3.7.3"
+  }
+}
