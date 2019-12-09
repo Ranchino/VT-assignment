@@ -2,6 +2,8 @@
 
 Technologies used TypeScript and NodeJS
 
+Run `npm start`
+
 ## Developers
 
 [Sebastian Johansson](https://www.linkedin.com/in/sebastian-johansson-3a692617b/) <br>
