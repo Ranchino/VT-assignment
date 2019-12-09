@@ -2,6 +2,8 @@
 
 Technologies used TypeScript and NodeJS
 
+## To run the server
+
 1. `npm install`
 2. `nodemon index.js`
 
