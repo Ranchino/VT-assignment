@@ -1,6 +1,6 @@
 # Västtrafik API
 
-Technologies used TypeScript and NodeJS
+Technologies used: TypeScript and NodeJS
 
 ### Instructions to start the project
 1. `npm install`
