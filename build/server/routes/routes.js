@@ -7,7 +7,8 @@ const authenticationToken_1 = require("../authenticationToken");
 const express_1 = __importDefault(require("express"));
 let router = express_1.default.Router();
 router.get('/', authenticationToken_1.authentication);
-router.get('/', (req, res) => {
-    res.status(200).json({ message: "success" });
+router.get('/', (req, res, next) => {
+    res.status(200).json({ token: authenticationToken_1.accessToken });
+    next();
 });
-module.exports = router;
+exports.default = router;
