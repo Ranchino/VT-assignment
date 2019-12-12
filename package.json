@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "copy-deps": "node copy-deps.js",
-    "start": "nodemon -e ts,html,css -w src --exec \"npm run dev\"",
+    "start": "nodemon -e ts,html,css, -w src --exec \"npm run dev\"",
     "dev": "tsc && npm run copy-deps && node ./build/server/app.js"
   },
   "author": "",

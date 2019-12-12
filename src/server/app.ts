@@ -5,6 +5,7 @@ import router from './routes/routes'
 // Init express and set port
 const app = express()
 const port = 3000
+
 app.use('/api', BodyParser.json())
 app.get('/api', (req: Request, res: Response, next: NextFunction) => {
     res.setHeader("Content-Type", "application/json")
@@ -13,7 +14,7 @@ app.get('/api', (req: Request, res: Response, next: NextFunction) => {
 app.use('/api', router)
 
 // Define our routes
-app.use(express.static('./build/client'))
+app.use(express.static('./build/client'));
 
 app.get('/', function(req: Request, res: Response, next: NextFunction){
     
