@@ -24,5 +24,7 @@ app.get('/api', (req, res, next) => {
 app.use('/api', routes_1.default);
 // Define our routes
 app.use(express_1.default.static('./build/client'));
+app.get('/', function (req, res, next) {
+});
 // Start server
 app.listen(port, () => console.log('Server is running at port ' + port));

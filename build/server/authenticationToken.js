@@ -4,11 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
-exports.accessToken = "";
 let clientId = "koe5BYE1jhJC4vsE6dzJDAX0zfUa";
 let clientSecret = "BwdHUCabftDUfga6dOf1Bd8NW5oa";
 let grantType = 'client_credentials';
 let URL = 'https://api.vasttrafik.se/token';
+let expireTime;
 function authentication(Request, Response, next) {
     let headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
     let data = `client_id=${clientId}&client_secret=${clientSecret}&grant_type=${grantType}`;
@@ -16,7 +16,12 @@ function authentication(Request, Response, next) {
         headers
     })
         .then(function (response) {
-        exports.accessToken = response.data.access_token;
+        expireTime = response.data.expires_in;
+        exports.token = {
+            accessToken: response.data.access_token,
+            expireTime: response.data.expires_in,
+            tokenType: response.data.token_type
+        };
     }).catch(function (error) {
         console.log("ERROR: ", error);
     }).finally(next);
