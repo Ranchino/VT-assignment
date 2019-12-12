@@ -1,24 +1,21 @@
 
 import * as BodyParser from 'body-parser' 
-import express, { Request, Response } from 'express' 
-import { isObject } from 'util'
-import { userInfo } from 'os'
-const routes = require('./routes/routes')
+import express, { Request, Response, NextFunction } from 'express'
+import router from './routes/routes'
 
 // Init express and set port
 const app = express()
 const port = 3000
 
+app.use('/api', BodyParser.json())
+app.get('/api', (req: Request, res: Response, next: NextFunction) => {
+    res.setHeader("Content-Type", "application/json")
+    next()
+})
+app.use('/api', router)
+
 // Define our routes
 app.use(express.static('./build/client'))
-
-app.use('/', routes)
-app.use('/api', BodyParser.json())
-
-app.get('/api/?', (req: Request, res: Response) => {
-    res.setHeader("Content-Type", "application/json")
-    res.send({ response: "It works!"})
-})
 
 
 // Start server

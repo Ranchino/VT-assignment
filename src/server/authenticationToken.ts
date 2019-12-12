@@ -1,12 +1,13 @@
 import axios from 'axios'
-let accessToken: string
+import { Request, Response, NextFunction } from "express"
+export let accessToken: string = ""
 let clientId: string = "koe5BYE1jhJC4vsE6dzJDAX0zfUa"
 let clientSecret: string = "BwdHUCabftDUfga6dOf1Bd8NW5oa"
 let grantType: string = 'client_credentials'
 let URL: string = 'https://api.vasttrafik.se/token'
 
-export function authentication(){
-
+export function authentication(Request: Request, Response: Response, next: NextFunction){
+    
     let headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
     let data = `client_id=${clientId}&client_secret=${clientSecret}&grant_type=${grantType}`
 
@@ -15,10 +16,7 @@ export function authentication(){
     })
     .then(function(response){
         accessToken = response.data.access_token
-        console.log(accessToken)
-
     }).catch(function(error) {
         console.log("ERROR: ", error)
-    })
-
+    }).finally(next)
 }

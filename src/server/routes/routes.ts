@@ -1,13 +1,12 @@
-import { authentication } from '../authenticationToken'
-import express, { Request, Response } from 'express'
-
+import { authentication, accessToken } from '../authenticationToken'
+import express, { Request, Response, NextFunction } from 'express'
 
 let router = express.Router()
 
-
 router.get('/', authentication)
-router.get('/', (req: Request, res: Response) => {
-    res.status(200).json({ message: "success" })
+router.get('/', (req: Request, res: Response, next: NextFunction) => {
+    res.status(200).json({ token: accessToken })
+    next()
 })
 
-module.exports = router
+export default router
