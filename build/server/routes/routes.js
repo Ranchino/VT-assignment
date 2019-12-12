@@ -15,9 +15,9 @@ router.get('/', authenticationToken_1.authentication);
 router.get('/', (req, res, next) => {
     let bearer = authenticationToken_1.token.tokenType;
     let accessToken = authenticationToken_1.token.accessToken;
-    axios_1.default.get('https://api.vasttrafik.se/bin/rest.exe/v2/location.name?input=lerum&format=json HTTP/1.1', {
+    axios_1.default.get('https://api.vasttrafik.se/bin/rest.exe/v2/location.name?input=ols&format=json', {
         headers: {
-            Authorization: bearer + accessToken
+            Authorization: bearer + " " + accessToken
         }
     })
         .then(function (response) {
