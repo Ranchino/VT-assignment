@@ -7,12 +7,12 @@ let grantType: string = 'client_credentials'
 let URL: string = 'https://api.vasttrafik.se/token'
 let expireTime: number
 
-export function authentication(Request: Request, Response: Response, next: NextFunction){
+export async function authentication(Request: Request, Response: Response, next: NextFunction){
     
     let headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
     let data = `client_id=${clientId}&client_secret=${clientSecret}&grant_type=${grantType}`
 
-    axios.post(URL, data, {
+    await axios.post(URL, data, {
         headers
     })
     .then(function(response){
