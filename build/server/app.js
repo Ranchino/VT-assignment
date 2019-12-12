@@ -16,10 +16,10 @@ const routes = require('./routes/routes');
 // Init express and set port
 const app = express_1.default();
 const port = 3000;
-app.use('/', routes);
-app.use('/api', BodyParser.json());
 // Define our routes
 app.use(express_1.default.static('./build/client'));
+app.use('/', routes);
+app.use('/api', BodyParser.json());
 app.get('/api/?', (req, res) => {
     res.setHeader("Content-Type", "application/json");
     res.send({ response: "It works!" });
