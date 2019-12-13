@@ -3,7 +3,7 @@ const path = require('path');
 
 const root = './src';
 const outdir = './build';
-const filter = ['.html', '.css', '.png'];
+const filter = ['.html', '.css', '.png', '.ts'];
 const files = [];
 
 function explore(root, filter, output) {
