@@ -1,4 +1,3 @@
-
 import * as BodyParser from 'body-parser' 
 import express, { Request, Response, NextFunction } from 'express'
 import router from './routes/routes'
@@ -16,6 +15,10 @@ app.use('/api', router)
 
 // Define our routes
 app.use(express.static('./build/client'));
+
+app.get('/', function(req: Request, res: Response, next: NextFunction){
+    
+})
 
 
 // Start server
