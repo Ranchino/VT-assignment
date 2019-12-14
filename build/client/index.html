@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="/css/style.css">
     <script src="https://kit.fontawesome.com/7210a4f6c1.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
-    <script src="/script/script.ts"></script>
-
 </head>
 <body>
     <main>
@@ -22,7 +20,11 @@
                         <span class="input-group-text" id="inputGroup-sizing-default">Från</span>
                     </div>
                     <input type="text" id="inputFrom" class="form-control" placeholder="Hållplats/Adress/Plats" aria-label="" aria-describedby="basic-addon1" required="true">
+                    <div id="searchResultsContainer">
+                 
+                    </div>
                 </div>
+                
                 <i class="fas fa-exchange-alt fa-3x" onclick="switchInputText()"></i>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -54,6 +56,7 @@
             </div>
         </section>
     </main>
+    <script src="/script/script.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
