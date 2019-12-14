@@ -1,40 +1,20 @@
 console.log("Script");
 
 
-/* (function () {
-    function switchInputText(){
-        console.log("Inne i funktionen");
-        let inputFrom = (<HTMLInputElement>document.getElementById("inputFrom"));
-        let inputTo = (<HTMLInputElement>document.getElementById("inputTo"));
+function switchInputText(){
+    let inputFrom = (<HTMLInputElement>document.getElementById("inputFrom")).value;
+    let inputTo = (<HTMLInputElement>document.getElementById("inputTo")).value;
 
-        if(inputFrom.value == "" || inputTo.value == ""){
-            alert("fyll in alla fält");
-        }else{
-            inputFrom.innerHTML = inputTo.value;
-            inputTo.innerHTML = inputFrom.value;
-        }
-        
+    if(inputFrom == "" || inputTo == ""){
+        alert("fyll in alla fält");
+    }else{
+        (<HTMLInputElement>document.getElementById("inputFrom")).value = inputTo;
+        (<HTMLInputElement>document.getElementById("inputTo")).value = inputFrom;
     }
-
-    (<HTMLInputElement>document.getElementById('switchInputText')).addEventListener('click', switchInputText, true);
-})(); */
-
-class inputChange {
-    constructor() {
-
-        (<HTMLInputElement>document.getElementById("switchInputText")).addEventListener("click", (e:Event) => this.switchInputText());
-    }
-    switchInputText(){
-        let inputFrom = (<HTMLInputElement>document.getElementById("inputFrom"));
-        let inputTo = (<HTMLInputElement>document.getElementById("inputTo"));
-
-        if(inputFrom.value == "" || inputTo.value == ""){
-            alert("fyll in alla fält");
-        }else{
-            inputFrom.innerHTML = inputTo.value;
-            inputTo.innerHTML = inputFrom.value;
-        }
-    }
+    
 }
 
-new inputChange
+window.onload=function(){
+    
+    (<HTMLInputElement>document.getElementById('switchInputText')).addEventListener('click', switchInputText, true);
+}
