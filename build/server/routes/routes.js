@@ -22,8 +22,6 @@ router.get('/', (req, res, next) => {
         }
     })
         .then(function (response) {
-        res.status(200).json(response.data);
-        console.log(response.data);
         fs_1.default.readFile('./All_stops.json', 'utf-8', function (err, data) {
             if (err)
                 throw err;
@@ -38,5 +36,28 @@ router.get('/', (req, res, next) => {
     }).catch(function (error) {
         console.log("ERROR: ", error);
     }).then(next);
+});
+router.post('/location', (req, res, next) => {
+    let array = [];
+    let searchResults;
+    // Resets array for every input liste
+    array = [];
+    fs_1.default.readFile('./All_stops.json', 'utf-8', function (err, data) {
+        var arrayOfObjects = JSON.parse(data);
+        let allStopsList = arrayOfObjects.All_Stops[0].StopLocation;
+        for (var i = 0; i < allStopsList.length; i++) {
+            if (allStopsList[i].name.includes(req.body.searchValue)) {
+                searchResults = {
+                    'hallplats': arrayOfObjects.All_Stops[0].StopLocation[i].name,
+                    'id': arrayOfObjects.All_Stops[0].StopLocation[i].id
+                };
+                array.push(searchResults);
+                if (array.length === 10) {
+                    break;
+                }
+            }
+        }
+        res.send(array);
+    });
 });
 exports.default = router;
