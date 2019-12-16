@@ -20,7 +20,7 @@ router.get('/', (req: Request, res: Response, next: NextFunction) => {
     })
     .then(function(response){
         res.status(200).json({response: response.data})
-        console.log(response.data)
+        //console.log(response.data)
         
     }).catch(function(error) {
         console.log("ERROR: ", error)

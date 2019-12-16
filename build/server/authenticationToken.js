@@ -13,11 +13,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
+const moment = require("moment");
 let clientId = "koe5BYE1jhJC4vsE6dzJDAX0zfUa";
 let clientSecret = "BwdHUCabftDUfga6dOf1Bd8NW5oa";
 let grantType = 'client_credentials';
 let URL = 'https://api.vasttrafik.se/token';
 let expireTime;
+let currentTime = moment.now();
 function authentication(Request, Response, next) {
     return __awaiter(this, void 0, void 0, function* () {
         let headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
@@ -32,6 +34,7 @@ function authentication(Request, Response, next) {
                 expireTime: response.data.expires_in,
                 tokenType: response.data.token_type
             };
+            console.log(new Date(exports.token.expireTime * 1000));
         }).catch(function (error) {
             console.log("ERROR: ", error);
         }).finally(next);
