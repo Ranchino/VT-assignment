@@ -17,24 +17,23 @@ let clientId = "koe5BYE1jhJC4vsE6dzJDAX0zfUa";
 let clientSecret = "BwdHUCabftDUfga6dOf1Bd8NW5oa";
 let grantType = 'client_credentials';
 let URL = 'https://api.vasttrafik.se/token';
-let expireTime;
+let expireTime = 0;
 function authentication(Request, Response, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        let headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
-        let data = `client_id=${clientId}&client_secret=${clientSecret}&grant_type=${grantType}`;
-        yield axios_1.default.post(URL, data, {
-            headers
-        })
-            .then(function (response) {
-            expireTime = response.data.expires_in;
+        if (Date.now() >= expireTime) {
+            let headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+            let data = `client_id=${clientId}&client_secret=${clientSecret}&grant_type=${grantType}`;
+            const response = yield axios_1.default.post(URL, data, {
+                headers
+            });
+            expireTime = (response.data.expires_in * 1000) + Date.now();
             exports.token = {
                 accessToken: response.data.access_token,
                 expireTime: response.data.expires_in,
                 tokenType: response.data.token_type
             };
-        }).catch(function (error) {
-            console.log("ERROR: ", error);
-        }).finally(next);
+        }
+        next();
     });
 }
 exports.authentication = authentication;
