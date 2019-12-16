@@ -26,7 +26,7 @@ function authentication(Request, Response, next) {
             const response = yield axios_1.default.post(URL, data, {
                 headers
             });
-            expireTime = response.data.expires_in + Date.now();
+            expireTime = (response.data.expires_in * 1000) + Date.now();
             exports.token = {
                 accessToken: response.data.access_token,
                 expireTime: response.data.expires_in,

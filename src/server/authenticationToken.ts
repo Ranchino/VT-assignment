@@ -16,7 +16,7 @@ export async function authentication(Request: Request, Response: Response, next:
         const response = await axios.post(URL, data, {
             headers
         })
-        expireTime = response.data.expires_in + Date.now()
+        expireTime = (response.data.expires_in * 1000) + Date.now()
         token = {
             accessToken: response.data.access_token,
             expireTime: response.data.expires_in,
