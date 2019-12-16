@@ -42,13 +42,12 @@ router.post('/location', (req: Request, res: Response, next: NextFunction) => {
         var arrayOfObjects = JSON.parse(data)
         let allStopsList = arrayOfObjects.All_Stops[0].StopLocation
         for (var i = 0; i < allStopsList.length; i++) {
-            if (allStopsList[i].name.includes(req.body.searchValue)) {
+            if (allStopsList[i].name.includes(req.body.searchValue) && allStopsList[i].track === undefined) {
                 searchResults = {
                     'hallplats': arrayOfObjects.All_Stops[0].StopLocation[i].name,
                     'id': arrayOfObjects.All_Stops[0].StopLocation[i].id
                 }
                 
-
                 array.push(searchResults)
 
                 if (array.length === 10) {

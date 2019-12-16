@@ -22,7 +22,6 @@ export async function authentication(Request: Request, Response: Response, next:
             expireTime: response.data.expires_in,
             tokenType: response.data.token_type
         }
-        
     }).catch(function(error) {
         console.log("ERROR: ", error)
     }).finally(next)
