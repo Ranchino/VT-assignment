@@ -4,9 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>TS-boilerplate</title>
+    <title>Västtrafik-Applikation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/7210a4f6c1.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
+    <script type="text/typescript" src="/script/script.ts"></script>
+    <script src="/script/script.js"></script>
+
 </head>
 <body>
-    
+    <main>
+        <section>
+            <img src="static/vt-logo.png"/>
+            <form>
+                <div class="container">
+                    <div class="row">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Från</span>
+                            </div>
+                            <input type="text" id="inputFrom" class="form-control" placeholder="Hållplats/Adress/Plats" value="" aria-label="" aria-describedby="basic-addon1" required="true">
+                        </div>
+                        <i class="fas fa-exchange-alt fa-3x" id="switchInputText"></i>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Till</span>
+                            </div>
+                            <input type="text" id="inputTo" class="form-control" placeholder="Hållplats/Adress/Plats" value="" aria-label="" aria-describedby="basic-addon1" required="true">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="departure" checked>
+                            <label class="form-check-label" for="inlineRadio1">Ange avgångstid</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="arrival">
+                            <label class="form-check-label" for="inlineRadio2">Ange ankomsttid</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class='input-group date'>
+                                <input type="datetime-local" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-primary">Sök resa</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </section>
+    </main>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
