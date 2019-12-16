@@ -17,7 +17,7 @@
     <main>
         <section>
             <img src="static/vt-logo.png"/>
-            <form>
+            <form id="myForm" action="myFormAction" method="POST">
                 <div class="container">
                     <div class="row">
                         <div class="input-group mb-3">
@@ -35,19 +35,22 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="departure" checked>
-                            <label class="form-check-label" for="inlineRadio1">Ange avgångstid</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="arrival">
-                            <label class="form-check-label" for="inlineRadio2">Ange ankomsttid</label>
-                        </div>
+                        <fieldset class="form-group">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="departure" checked>
+                                <label class="form-check-label" for="inlineRadio1">Ange avgångstid</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="arrival">
+                                <label class="form-check-label" for="inlineRadio2">Ange ankomsttid</label>
+                            </div>
+                        </fieldset>
                     </div>
                     <div class="row">
                         <div class="form-group">
                             <div class='input-group date'>
-                                <input type="datetime-local" />
+                                <input type="date" name="dateForTrip" id="dateForTrip" value=""/>
+                                <input type="time" name="timeForTrip" id="timeForTrip" value="" />
                             </div>
                         </div>
                     </div>
