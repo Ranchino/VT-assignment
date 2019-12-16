@@ -63,4 +63,11 @@ form{
     display: flex;
     justify-content: center;
 }
+#searchResultsContainer {
+    background-color: rgb(245, 245, 245);
+    width: 20em;
+    z-index: 9999;
+    position: absolute;
+    margin-top: 2.5em;
+}
 
