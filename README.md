@@ -7,6 +7,7 @@
 #### Instructions to start the project
 1. `npm install`
 2. `nodemon index.js`
+3. `To see the magic, just type localhost:3000 in to your browser`
 
 #### Link to this project: [Vasttrafik-app]()
 
