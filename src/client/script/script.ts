@@ -56,7 +56,15 @@ function getDate(){
 
     if(mm<10) {
         mm = '0'+mm
-    } 
+    }
+    
+    if(hour<10){
+        hour = '0'+hour
+    }
+
+    if(minute<10){
+        minute = '0'+minute
+    }
 
     today = yyyy + '-' + mm + '-' + dd;
     console.log(today);

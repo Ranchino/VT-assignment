@@ -11,11 +11,11 @@ body {
 
 main {
     margin-top: 5em;
+    margin-bottom: 5em;
     border-radius: 1em;
-    /* background-color: #02a7e4; */
     background-color: white;
     position: relative;
-    height: 40em;
+    min-height: 40em;
     padding: 2em;
     display: flex;
     justify-content: center;
@@ -23,7 +23,7 @@ main {
 
 section {
     text-align: center;
-    height: 20rem;
+    min-height: 20rem;
     width: 50rem;
 }
 
@@ -62,5 +62,15 @@ form{
     margin: 0;
     display: flex;
     justify-content: center;
+}
+
+#theJourneyContainer{
+    display: flex;
+    justify-content: center;
+}
+
+hr{
+    width: 500px;
+    border-top: 5px solid #02a7e4;
 }
 
