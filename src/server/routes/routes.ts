@@ -61,4 +61,26 @@ router.post('/location', (req: Request, res: Response, next: NextFunction) => {
     })
 })
 
+router.post('/getTrips', async function(req: Request, res: Response, next: NextFunction) {
+    let url: string;
+
+    if (req.body.time && req.body.date && req.body.searchForArrival) {
+        url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&date=${req.body.date}&time=${req.body.time}&searchForArrival=${req.body.searchForArrival}&format=json`
+    } else {
+        url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&format=json`
+    }
+    
+    
+    let bearer: string = token.tokenType
+    let accessToken: string = token.accessToken
+
+
+    let response = await axios.get(url, {
+        headers: {
+            Authorization: bearer + " " + accessToken
+        }
+    })
+    console.log(response)
+})
+
 export default router

@@ -29,9 +29,28 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.addEventListener("submit", function (event) {
         return __awaiter(this, void 0, void 0, function* () {
             event.preventDefault();
+            let searchForArrival;
+            let date;
+            let time;
+            const idFrom = document.getElementById("inputFrom");
+            const idTo = document.getElementById("inputTo");
+            const input = document.getElementById("inlineRadio2");
+            if (input.checked) {
+                searchForArrival = 1;
+                const getDate = document.getElementById("dateForTrip");
+                const getTime = document.getElementById("timeForTrip");
+                date = getDate.value;
+                time = getTime.value;
+            }
             const response = yield fetch('/api/getTrips', {
                 method: 'POST',
-                body: JSON.stringify({}),
+                body: JSON.stringify({
+                    searchForArrival: searchForArrival,
+                    date: date,
+                    time: time,
+                    idFrom: idFrom.dataset.id,
+                    idTo: idTo.dataset.id,
+                }),
                 headers: {
                     'Content-Type': 'application/json'
                 } // body data type must match "Content-Type" header

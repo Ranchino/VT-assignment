@@ -71,4 +71,23 @@ router.post('/location', (req, res, next) => {
         res.send(array);
     });
 });
+router.post('/getTrips', function (req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let url;
+        if (req.body.time && req.body.date && req.body.searchForArrival) {
+            url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&date=${req.body.date}&time=${req.body.time}&searchForArrival=${req.body.searchForArrival}&format=json`;
+        }
+        else {
+            url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&format=json`;
+        }
+        let bearer = authenticationToken_1.token.tokenType;
+        let accessToken = authenticationToken_1.token.accessToken;
+        let response = yield axios_1.default.get(url, {
+            headers: {
+                Authorization: bearer + " " + accessToken
+            }
+        });
+        console.log(response);
+    });
+});
 exports.default = router;
