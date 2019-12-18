@@ -16,7 +16,7 @@ main {
     border-radius: 1em;
     background-color: white;
     position: relative;
-    height: 40em;
+    min-height: 40em;
     padding: 2em;
     display: flex;
     justify-content: center;
@@ -24,7 +24,7 @@ main {
 
 section {
     text-align: center;
-    height: 20rem;
+    min-height: 20rem;
     width: 50rem;
 }
 
@@ -78,5 +78,15 @@ form{
 
 #searchResultFrom p, #searchResultTo p {
     cursor: pointer;
+}
+
+#theJourneyContainer{
+    display: flex;
+    justify-content: center;
+}
+
+hr{
+    width: 500px;
+    border-top: 5px solid #02a7e4;
 }
 
