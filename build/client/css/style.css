@@ -6,7 +6,8 @@ body {
     margin: 0;
     display: flex;
     justify-content: center;
-    background-color: #EAEBEE;
+    background-image: url('../background.jpg');
+    background-size: cover;
 }
 
 main {
@@ -28,7 +29,7 @@ section {
 }
 
 form{
-    margin-top: 3em;
+    margin-top: 5em;
     display: flex;
     justify-content: center;
 }
@@ -40,7 +41,7 @@ form{
 }
 
 .input-group.mb-3{
-    width: 20em;
+
 }
 
 .input-group-text{
@@ -57,10 +58,17 @@ form{
     color: white;
 }
 
-.row{
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
+#searchResultFrom, #searchResultTo {
+    background-color: rgb(245, 245, 245);
+    width: 20em;
+    z-index: 9999;
+    position: absolute;
+    margin-top: 2.5em;
+    text-align: left;
+    padding-left: 1em;
+}
+
+#searchResultFrom p, #searchResultTo p {
+    cursor: pointer;
 }
 

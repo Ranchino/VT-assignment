@@ -6,13 +6,14 @@ body {
     margin: 0;
     display: flex;
     justify-content: center;
-    background-color: #EAEBEE;
+    background-color: grey;
+
 }
 
 main {
     margin-top: 5em;
+    margin-bottom: 5em;
     border-radius: 1em;
-    /* background-color: #02a7e4; */
     background-color: white;
     position: relative;
     height: 40em;
@@ -28,7 +29,7 @@ section {
 }
 
 form{
-    margin-top: 3em;
+    margin-top: 5em;
     display: flex;
     justify-content: center;
 }
@@ -62,5 +63,20 @@ form{
     margin: 0;
     display: flex;
     justify-content: center;
+}
+
+
+#searchResultFrom, #searchResultTo {
+    background-color: rgb(245, 245, 245);
+    width: 20em;
+    z-index: 9999;
+    position: absolute;
+    margin-top: 2.5em;
+    text-align: left;
+    padding-left: 1em;
+}
+
+#searchResultFrom p, #searchResultTo p {
+    cursor: pointer;
 }
 

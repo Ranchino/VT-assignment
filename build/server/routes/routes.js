@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -22,21 +31,44 @@ router.get('/', (req, res, next) => {
         }
     })
         .then(function (response) {
-        res.status(200).json(response.data);
-        console.log(response.data);
         fs_1.default.readFile('./All_stops.json', 'utf-8', function (err, data) {
-            if (err)
-                throw err;
-            var arrayOfObjects = JSON.parse(data);
-            arrayOfObjects.All_Stops.push(response.data.LocationList);
-            fs_1.default.writeFile('./All_stops.json', JSON.stringify(arrayOfObjects), 'utf-8', function (err) {
+            return __awaiter(this, void 0, void 0, function* () {
                 if (err)
                     throw err;
-                console.log("done");
+                var arrayOfObjects = JSON.parse(data);
+                arrayOfObjects.All_Stops.push(response.data.LocationList);
+                fs_1.default.writeFile('./All_stops.json', JSON.stringify(arrayOfObjects), 'utf-8', function (err) {
+                    if (err)
+                        throw err;
+                    console.log("done");
+                });
             });
         });
     }).catch(function (error) {
         console.log("ERROR: ", error);
     }).then(next);
+});
+router.post('/location', (req, res, next) => {
+    let array = [];
+    let searchResults;
+    // Resets array for every input liste
+    array = [];
+    fs_1.default.readFile('./All_stops.json', 'utf-8', function (err, data) {
+        var arrayOfObjects = JSON.parse(data);
+        let allStopsList = arrayOfObjects.All_Stops[0].StopLocation;
+        for (var i = 0; i < allStopsList.length; i++) {
+            if (allStopsList[i].name.includes(req.body.searchValue) && allStopsList[i].track === undefined) {
+                searchResults = {
+                    'hallplats': arrayOfObjects.All_Stops[0].StopLocation[i].name,
+                    'id': arrayOfObjects.All_Stops[0].StopLocation[i].id
+                };
+                array.push(searchResults);
+                if (array.length === 10) {
+                    break;
+                }
+            }
+        }
+        res.send(array);
+    });
 });
 exports.default = router;
