@@ -1,4 +1,5 @@
 const inputFrom = document.getElementById('inputFrom') as HTMLInputElement;
+const inputTo = document.getElementById('inputTo') as HTMLInputElement;
 const searchResultContainer = document.getElementById("searchResultsContainer") as HTMLElement
 
 inputFrom.addEventListener("input", async function(){ 
@@ -31,7 +32,18 @@ function printSearchResults(results: any) {
     }
 }
 
-function chooseLocation(event: Event) {
-    inputFrom.value = (<HTMLInputElement>event.target).innerHTML
-    searchResultContainer.innerHTML = "";
+async function chooseLocation(event: Event) {
+    let valueFrom = inputFrom.value = (<HTMLInputElement>event.target).innerHTML
+    let valueTo = inputTo.value = (<HTMLInputElement>event.target).innerHTML
+    const response = await fetch('/api/stops', {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        body: JSON.stringify({ searchValueFrom: valueFrom, searchValueTo: valueTo }),
+        headers: {
+            'Content-Type': 'application/json'
+        } // body data type must match "Content-Type" header
+    });
+    
+    if (!inputFrom.value) {
+        searchResultContainer.innerHTML = "";
+    }
 }
