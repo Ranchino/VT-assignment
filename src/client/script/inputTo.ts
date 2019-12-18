@@ -32,7 +32,7 @@ function printSearchResultsTo(results: any) {
     }
 }
 
-function chooseLocationFrom(event: Event) {
+function chooseLocationTo(event: Event) {
     inputTo.value = (<HTMLInputElement>event.target).innerHTML
     searchResultTo.innerHTML = "";
 }
