@@ -11,21 +11,21 @@
     <link rel="icon" href="/static/favicon.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/7210a4f6c1.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
-    <script type="text/typescript" src="/script/script.ts"></script>
+    <script src="/script/script.js"></script>
 ​
 </head>
 <body>
     <main>
         <section>
             <img src="static/vt-logo.png"/>
-            <form id="myForm" action="myFormAction" method="POST">
+            <form id="myForm">
                 <div class="container">
                     <div class="row">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-default">Från</span>
                             </div>
-                            <input type="text" id="inputFrom" class="form-control" placeholder="Hållplats/Adress/Plats" value="" aria-label="" aria-describedby="basic-addon1" required="true">
+                            <input type="text" id="inputFrom" class="form-control" placeholder="Hållplats/Adress/Plats" value="" aria-label="" aria-describedby="basic-addon1" autocomplete="off" required="true">
                             <div id="searchResultFrom"></div>
                         </div>
                         <i class="fas fa-exchange-alt fa-3x" id="switchInputText"></i>
@@ -33,7 +33,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-default">Till</span>
                             </div>
-                            <input type="text" id="inputTo" class="form-control" placeholder="Hållplats/Adress/Plats" value="" aria-label="" aria-describedby="basic-addon1" required="true">
+                            <input type="text" id="inputTo" class="form-control" placeholder="Hållplats/Adress/Plats" value="" aria-label="" aria-describedby="basic-addon1" autocomplete="off" required="true">
                             <div id="searchResultTo"></div>
                         </div>
                     </div>

@@ -8,15 +8,16 @@ body {
     justify-content: center;
     background-image: url('../background.jpg');
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 main {
     margin-top: 5em;
+    margin-bottom: 5em;
     border-radius: 1em;
-    /* background-color: #02a7e4; */
     background-color: white;
     position: relative;
-    height: 40em;
+    min-height: 40em;
     padding: 2em;
     display: flex;
     justify-content: center;
@@ -24,7 +25,7 @@ main {
 
 section {
     text-align: center;
-    height: 20rem;
+    min-height: 20rem;
     width: 50rem;
 }
 
@@ -41,7 +42,7 @@ form{
 }
 
 .input-group.mb-3{
-
+    width: 20em;
 }
 
 .input-group-text{
@@ -58,6 +59,14 @@ form{
     color: white;
 }
 
+.row{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+
 #searchResultFrom, #searchResultTo {
     background-color: rgb(245, 245, 245);
     width: 20em;
@@ -70,5 +79,15 @@ form{
 
 #searchResultFrom p, #searchResultTo p {
     cursor: pointer;
+}
+
+#theJourneyContainer{
+    display: flex;
+    justify-content: center;
+}
+
+hr{
+    width: 500px;
+    border-top: 5px solid #02a7e4;
 }
 

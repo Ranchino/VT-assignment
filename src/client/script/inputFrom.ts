@@ -26,12 +26,14 @@ function printSearchResultsFrom(results: any) {
     for (var i = 0; i < results.length; i++) {
         const pElement = document.createElement('p')
         pElement.setAttribute("onclick", "chooseLocationFrom(event)")
-        pElement.innerHTML = results[i].hallplats
-        searchResultFrom.appendChild(pElement)
+        pElement.dataset.id = results[i].id;
+        pElement.innerHTML = results[i].hallplats;
+        searchResultFrom.appendChild(pElement);
     }
 }
 
 function chooseLocationFrom(event: Event) {
+    inputFrom.dataset.id = (<HTMLInputElement>event.target).dataset.id
     inputFrom.value = (<HTMLInputElement>event.target).innerHTML
     searchResultFrom.innerHTML = "";
 }

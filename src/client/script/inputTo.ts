@@ -27,12 +27,14 @@ function printSearchResultsTo(results: any) {
     for (var i = 0; i < results.length; i++) {
         const pElement = document.createElement('p')
         pElement.setAttribute("onclick", "chooseLocationTo(event)")
+        pElement.dataset.id = results[i].id;
         pElement.innerHTML = results[i].hallplats
         searchResultTo.appendChild(pElement)
     }
 }
 
 function chooseLocationTo(event: Event) {
+    inputTo.dataset.id = (<HTMLInputElement>event.target).dataset.id
     inputTo.value = (<HTMLInputElement>event.target).innerHTML
     searchResultTo.innerHTML = "";
 }

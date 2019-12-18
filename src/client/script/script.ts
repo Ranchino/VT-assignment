@@ -28,17 +28,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
         event.preventDefault();
 
-        const form = event.target as HTMLFormElement;
 
-        // casting to any here to satisfy tsc
-        // sending body as x-www-form-url-encoded
-        const result = await fetch(form.action, {
-        method: form.method,
-        body: new URLSearchParams([...(new FormData(form) as any)])
-        })        
-        .then((response: Response) => response.json())
-        .then(json => json)
-        .catch(error => console.log(error));        
+        const response = await fetch('/api/getTrips', {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            body: JSON.stringify({  }),
+            headers: {
+                'Content-Type': 'application/json'
+            } // body data type must match "Content-Type" header
+        });
+        const json = await response.json();
+      
     });
 })
 
