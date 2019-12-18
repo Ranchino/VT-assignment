@@ -18,9 +18,10 @@ router.get('/', (req: Request, res: Response, next: NextFunction) => {
         }
     })
     .then(function(response){
-        fs.readFile('./All_stops.json', 'utf-8', function(err, data){
+        fs.readFile('./All_stops.json', 'utf-8', async function(err, data){
             if(err) throw err
             var arrayOfObjects = JSON.parse(data)
+            
             arrayOfObjects.All_Stops.push(response.data.LocationList)
 
             fs.writeFile('./All_stops.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err){

@@ -1,5 +1,5 @@
 const inputFrom = document.getElementById('inputFrom') as HTMLInputElement;
-const searchResultContainer = document.getElementById("searchResultsContainer") as HTMLElement
+const searchResultFrom = document.getElementById("searchResultFrom") as HTMLElement
 
 inputFrom.addEventListener("input", async function(){ 
 
@@ -12,26 +12,26 @@ inputFrom.addEventListener("input", async function(){
             } // body data type must match "Content-Type" header
         });
         const json = await response.json();
-        printSearchResults(json)
+        printSearchResultsFrom(json)
     }
 
     if (!inputFrom.value) {
-        searchResultContainer.innerHTML = "";
+        searchResultFrom.innerHTML = "";
     }
    
 });
 
-function printSearchResults(results: any) {
-    searchResultContainer.innerHTML = "";
+function printSearchResultsFrom(results: any) {
+    searchResultFrom.innerHTML = "";
     for (var i = 0; i < results.length; i++) {
-        const li = document.createElement('li')
-        li.setAttribute("onclick", "chooseLocation(event)")
-        li.innerHTML = results[i].hallplats
-        searchResultContainer.appendChild(li)
+        const pElement = document.createElement('p')
+        pElement.setAttribute("onclick", "chooseLocationTo(event)")
+        pElement.innerHTML = results[i].hallplats
+        searchResultFrom.appendChild(pElement)
     }
 }
 
-function chooseLocation(event: Event) {
+function chooseLocationTo(event: Event) {
     inputFrom.value = (<HTMLInputElement>event.target).innerHTML
-    searchResultContainer.innerHTML = "";
+    searchResultFrom.innerHTML = "";
 }

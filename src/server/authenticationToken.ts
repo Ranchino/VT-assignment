@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { Request, Response, NextFunction } from "express"
-import moment = require('moment')
 export let token: Token
 let clientId: string = "koe5BYE1jhJC4vsE6dzJDAX0zfUa"
 let clientSecret: string = "BwdHUCabftDUfga6dOf1Bd8NW5oa"
@@ -22,6 +21,7 @@ export async function authentication(Request: Request, Response: Response, next:
             expireTime: response.data.expires_in,
             tokenType: response.data.token_type
         }
+        console.log(response.data.access_token)
     }    
     next()
 }

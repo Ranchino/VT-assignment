@@ -9,7 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const inputFrom = document.getElementById('inputFrom');
-const searchResultContainer = document.getElementById("searchResultsContainer");
+const inputTo = document.getElementById('inputTo');
+const searchResultFrom = document.getElementById("searchResultFrom");
+const searchResultTo = document.getElementById("searchResultTo");
 inputFrom.addEventListener("input", function () {
     return __awaiter(this, void 0, void 0, function* () {
         if (inputFrom.value.length >= 2) {
@@ -21,23 +23,50 @@ inputFrom.addEventListener("input", function () {
                 } // body data type must match "Content-Type" header
             });
             const json = yield response.json();
-            printSearchResults(json);
+            printSearchResultsFrom(json);
         }
         if (!inputFrom.value) {
-            searchResultContainer.innerHTML = "";
+            searchResultFrom.innerHTML = "";
         }
     });
 });
-function printSearchResults(results) {
-    searchResultContainer.innerHTML = "";
+inputTo.addEventListener("input", function () {
+    return __awaiter(this, void 0, void 0, function* () {
+        if (inputTo.value.length >= 2) {
+            const response = yield fetch('/api/location', {
+                method: 'POST',
+                body: JSON.stringify({ searchValue: inputTo.value }),
+                headers: {
+                    'Content-Type': 'application/json'
+                } // body data type must match "Content-Type" header
+            });
+            const json = yield response.json();
+            printSearchResultsTo(json);
+        }
+        if (!inputTo.value) {
+            searchResultTo.innerHTML = "";
+        }
+    });
+});
+function printSearchResultsFrom(results) {
+    searchResultFrom.innerHTML = "";
     for (var i = 0; i < results.length; i++) {
-        const li = document.createElement('li');
-        li.setAttribute("onclick", "chooseLocation(event)");
-        li.innerHTML = results[i].hallplats;
-        searchResultContainer.appendChild(li);
+        const pElement = document.createElement('p');
+        pElement.setAttribute("onclick", "chooseLocation(event)");
+        pElement.innerHTML = results[i].hallplats;
+        searchResultFrom.appendChild(pElement);
+    }
+}
+function printSearchResultsTo(results) {
+    searchResultTo.innerHTML = "";
+    for (var i = 0; i < results.length; i++) {
+        const pElement = document.createElement('p');
+        pElement.setAttribute("onclick", "chooseLocation(event)");
+        pElement.innerHTML = results[i].hallplats;
+        searchResultTo.appendChild(pElement);
     }
 }
 function chooseLocation(event) {
     inputFrom.value = event.target.innerHTML;
-    searchResultContainer.innerHTML = "";
+    searchResultFrom.innerHTML = "";
 }
