@@ -25,7 +25,7 @@ function printSearchResultsFrom(results: any) {
     searchResultFrom.innerHTML = "";
     for (var i = 0; i < results.length; i++) {
         const pElement = document.createElement('p')
-        pElement.setAttribute("onclick", "chooseLocationTo(event)")
+        pElement.setAttribute("onclick", "chooseLocationFrom(event)")
         pElement.innerHTML = results[i].hallplats
         searchResultFrom.appendChild(pElement)
     }
