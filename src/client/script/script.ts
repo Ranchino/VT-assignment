@@ -1,15 +1,29 @@
 console.log("Script");
 
+/* import axios from 'axios'
+
+axios.get("/reger") */
+
+
 
 function switchInputText(){
     let inputFrom = (<HTMLInputElement>document.getElementById("inputFrom")).value;
+    let inputFromData = (<HTMLInputElement>document.getElementById("inputFrom")).dataset.id;
+
     let inputTo = (<HTMLInputElement>document.getElementById("inputTo")).value;
+    let inputToData = (<HTMLInputElement>document.getElementById("inputTo")).dataset.id;
+
 
     if(inputFrom == "" || inputTo == ""){
         alert("fyll in alla fält");
     }else{
         (<HTMLInputElement>document.getElementById("inputFrom")).value = inputTo;
+        (<HTMLInputElement>document.getElementById("inputFrom")).dataset.id = inputToData;
+
+
         (<HTMLInputElement>document.getElementById("inputTo")).value = inputFrom;
+        (<HTMLInputElement>document.getElementById("inputTo")).dataset.id = inputFromData;
+
     }
     
 }
@@ -35,15 +49,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const idFrom = document.getElementById("inputFrom") as HTMLInputElement;
         const idTo = document.getElementById("inputTo") as HTMLInputElement;
         
-        
         const input = document.getElementById("inlineRadio2") as HTMLInputElement;
+
+        const getDate = document.getElementById("dateForTrip") as HTMLInputElement;
+        const getTime = document.getElementById("timeForTrip") as HTMLInputElement;
+        date = getDate.value
+        time = getTime.value
         
         if (input.checked) {
             searchForArrival = 1
-            const getDate = document.getElementById("dateForTrip") as HTMLInputElement;
-            const getTime = document.getElementById("timeForTrip") as HTMLInputElement;
-            date = getDate.value
-            time = getTime.value
         }
 
         const response = await fetch('/api/getTrips', {

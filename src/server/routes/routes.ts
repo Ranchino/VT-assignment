@@ -2,6 +2,7 @@ import { authentication, token } from '../authenticationToken'
 import express, { Request, Response, NextFunction, response } from 'express'
 import axios from 'axios'
 import fs from 'fs'
+import { text } from 'body-parser'
 let router = express.Router()
 
 router.get('/', authentication)
@@ -66,10 +67,10 @@ router.post('/getTrips', async function(req: Request, res: Response, next: NextF
     let busRoutes: any = [];
     busRoutes = [];
 
-    if (req.body.time && req.body.date && req.body.searchForArrival) {
+    if (req.body.searchForArrival) {
         url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&date=${req.body.date}&time=${req.body.time}&searchForArrival=${req.body.searchForArrival}&format=json`
     } else {
-        url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&format=json`
+        url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&date=${req.body.date}&time=${req.body.time}&format=json`
     }
     
     
@@ -83,13 +84,13 @@ router.post('/getTrips', async function(req: Request, res: Response, next: NextF
         }
     })
 
-    var uri = tripsAPI.data.TripList.Trip[0].Leg.JourneyDetailRef.ref
+    var uri = tripsAPI.data.TripList.Trip[1].Leg.JourneyDetailRef.ref
     var uri_dec = decodeURIComponent(uri);
 
     console.log(uri_dec)
 
-    let origin = tripsAPI.data.TripList.Trip[0].Leg.Origin.routeIdx
-    let destination = tripsAPI.data.TripList.Trip[0].Leg.Destination.routeIdx
+    let origin = tripsAPI.data.TripList.Trip[1].Leg.Origin.routeIdx
+    let destination = tripsAPI.data.TripList.Trip[1].Leg.Destination.routeIdx
     
     let journeyAPI = await axios.get(uri_dec, {
         headers: {
@@ -97,20 +98,58 @@ router.post('/getTrips', async function(req: Request, res: Response, next: NextF
         }
     })
 
-    for (var i = origin; i <= destination; i++) {
-        console.log(i)
-        for (var a = 0; a < journeyAPI.data.JourneyDetail.Stop.length; a++) {
-            if (journeyAPI.data.JourneyDetail.Stop[a].routeIdx.includes(i)) {
-                busRoutes.push(
-                    { 
-                        "name": journeyAPI.data.JourneyDetail.Stop[a].name,
-                        "arrivalTime": journeyAPI.data.JourneyDetail.Stop[a].arrTime 
-                    } 
-                )
-            }
+    console.log(origin)
+    console.log(destination)
+    
+    console.log(journeyAPI.data.JourneyDetail.Stop)
+
+    let test = destination - origin
+    console.log(test)
+
+
+
+    //Test
+
+    for (var a = 0; a < journeyAPI.data.JourneyDetail.Stop.length; a++) {
+        if( a >= origin && a <= destination){
+            busRoutes.push(
+                { 
+                    "name": journeyAPI.data.JourneyDetail.Stop[a].name,
+                    "arrivalTime": journeyAPI.data.JourneyDetail.Stop[a].arrTime 
+                } 
+            )
+
         }
-        
+
+
+
+        // for (var i = origin; i <= destination; i++) {
+        //     if (journeyAPI.data.JourneyDetail.Stop[a].routeIdx.includes(i)) {
+        //         busRoutes.push(
+        //             { 
+        //                 "name": journeyAPI.data.JourneyDetail.Stop[a].name,
+        //                 "arrivalTime": journeyAPI.data.JourneyDetail.Stop[a].arrTime 
+        //             } 
+        //         )
+        //     }
+        // }
     }
+
+
+    // for (var i = origin; i <= destination; i++) {
+    //     console.log(i)
+    //     for (var a = 0; a < journeyAPI.data.JourneyDetail.Stop.length; a++) {
+    //         if (journeyAPI.data.JourneyDetail.Stop[a].routeIdx.includes(i)) {
+    //             busRoutes.push(
+    //                 { 
+    //                     "name": journeyAPI.data.JourneyDetail.Stop[a].name,
+    //                     "arrivalTime": journeyAPI.data.JourneyDetail.Stop[a].arrTime 
+    //                 } 
+    //             )
+    //         }
+    //     }
+        
+    // }
 
     console.log(busRoutes)
 
