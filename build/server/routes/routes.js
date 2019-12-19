@@ -36,6 +36,7 @@ router.get('/', (req, res, next) => {
                 if (err)
                     throw err;
                 var arrayOfObjects = JSON.parse(data);
+                arrayOfObjects.All_Stops = [];
                 arrayOfObjects.All_Stops.push(response.data.LocationList);
                 fs_1.default.writeFile('./All_stops.json', JSON.stringify(arrayOfObjects), 'utf-8', function (err) {
                     if (err)
@@ -74,6 +75,8 @@ router.post('/location', (req, res, next) => {
 router.post('/getTrips', function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         let url;
+        let busRoutes = [];
+        busRoutes = [];
         if (req.body.time && req.body.date && req.body.searchForArrival) {
             url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&date=${req.body.date}&time=${req.body.time}&searchForArrival=${req.body.searchForArrival}&format=json`;
         }
@@ -82,12 +85,33 @@ router.post('/getTrips', function (req, res, next) {
         }
         let bearer = authenticationToken_1.token.tokenType;
         let accessToken = authenticationToken_1.token.accessToken;
-        let response = yield axios_1.default.get(url, {
+        let tripsAPI = yield axios_1.default.get(url, {
             headers: {
                 Authorization: bearer + " " + accessToken
             }
         });
-        console.log(response);
+        var uri = tripsAPI.data.TripList.Trip[0].Leg.JourneyDetailRef.ref;
+        var uri_dec = decodeURIComponent(uri);
+        console.log(uri_dec);
+        let origin = tripsAPI.data.TripList.Trip[0].Leg.Origin.routeIdx;
+        let destination = tripsAPI.data.TripList.Trip[0].Leg.Destination.routeIdx;
+        let journeyAPI = yield axios_1.default.get(uri_dec, {
+            headers: {
+                Authorization: bearer + " " + accessToken
+            }
+        });
+        for (var i = origin; i <= destination; i++) {
+            console.log(i);
+            for (var a = 0; a < journeyAPI.data.JourneyDetail.Stop.length; a++) {
+                if (journeyAPI.data.JourneyDetail.Stop[a].routeIdx.includes(i)) {
+                    busRoutes.push({
+                        "name": journeyAPI.data.JourneyDetail.Stop[a].name,
+                        "arrivalTime": journeyAPI.data.JourneyDetail.Stop[a].arrTime
+                    });
+                }
+            }
+        }
+        console.log(busRoutes);
     });
 });
 exports.default = router;

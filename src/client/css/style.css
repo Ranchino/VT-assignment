@@ -81,10 +81,7 @@ form{
     cursor: pointer;
 }
 
-#theJourneyContainer{
-    display: flex;
-    justify-content: center;
-}
+
 
 hr{
     width: 500px;

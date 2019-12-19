@@ -62,9 +62,26 @@ document.addEventListener('DOMContentLoaded', function () {
             } // body data type must match "Content-Type" header
         });
         const json = await response.json();
-      
+        console.log(json)
+    
     });
 })
+
+function printMatchingRoutes(route: any) {
+    for (var i = 0; i < route.Trip.length; i++) {
+        if (i === 3) {
+            break
+        }
+        console.log(route.Trip[i])
+        const container = document.getElementById("theJourneyContainer")!;
+        const h3 = document.createElement("h3");
+        const p = document.createElement("p");
+        h3.innerHTML = route.Trip[i].Leg.name
+        p.innerHTML = "Från " + route.Trip[i].Leg.Origin.name + " <strong>" + route.Trip[i].Leg.Origin.time + "</strong>";
+        container.append(h3, p)
+
+    }
+}
 
 function getDate(){
     var today: any = new Date();
