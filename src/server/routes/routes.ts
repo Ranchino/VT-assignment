@@ -11,9 +11,6 @@ router.get('/', authentication)
 
 router.get('/', (req: Request, res: Response, next: NextFunction) => {
 
-    console.log("Expire: ", expireTime)
-    console.log("Now: ", Date.now())
-
     if(Date.now() >= expireTime){
         
         let bearer: string = token.tokenType
@@ -41,9 +38,6 @@ router.get('/', (req: Request, res: Response, next: NextFunction) => {
     }else {
         next()
     }
-        /* console.log("asd")
-        next() */
-    
 })
 
 export default router
