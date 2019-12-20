@@ -64,7 +64,12 @@ router.post('/getTrips', async function(req: Request, res: Response, next: NextF
     let busRoutes: any = [];
     busRoutes = [];
 
-    if (req.body.searchForArrival) {
+    // Testar
+    if( req.body.searchForArrival && req.body.markVas || req.body.markBus || req.body.markTram || req.body.markBoat || req.body.markTrain){
+        url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&date=${req.body.date}&time=${req.body.time}&useVas=${req.body.markVas}&useBus=${req.body.markBus}&useBoat=${req.body.markBoat}&useTram=${req.body.markTram}&useRegTrain=${req.body.markTrain}&searchForArrival=${req.body.searchForArrival}&numTrips=4&format=json`
+    }else if (req.body.markVas || req.body.markBus || req.body.markTram || req.body.markBoat || req.body.markTrain){
+        url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&date=${req.body.date}&time=${req.body.time}&useVas=${req.body.markVas}&useBus=${req.body.markBus}&useBoat=${req.body.markBoat}&useTram=${req.body.markTram}&useRegTrain=${req.body.markTrain}&numTrips=4&format=json`
+    }else if(req.body.searchForArrival) {
         url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&date=${req.body.date}&time=${req.body.time}&searchForArrival=${req.body.searchForArrival}&numTrips=4&format=json`
     } else {
         url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&date=${req.body.date}&time=${req.body.time}&numTrips=4&format=json`
@@ -83,9 +88,8 @@ router.post('/getTrips', async function(req: Request, res: Response, next: NextF
 
     /* var uri = tripsAPI.data.TripList.Trip[0].Leg.JourneyDetailRef.ref */
 
-    var uri;
 
-    if (req.body.searchForArrival){
+    /* if (req.body.searchForArrival){
         for (var i = 0; i < tripsAPI.data.TripList.Trip.length; i++ ) {
             if (i == 3) {
                 uri = tripsAPI.data.TripList.Trip[i].Leg.JourneyDetailRef.ref;
@@ -94,8 +98,13 @@ router.post('/getTrips', async function(req: Request, res: Response, next: NextF
 
     }else{
         uri = tripsAPI.data.TripList.Trip[0].Leg.JourneyDetailRef.ref
-    }
-   
+    } */
+
+    uri = tripsAPI.data.TripList.Trip[0].Leg.JourneyDetailRef.ref
+
+    var uri;
+    console.log(uri);
+
     var uri_dec = decodeURIComponent(uri);
 
     let origin = tripsAPI.data.TripList.Trip[0].Leg.Origin.routeIdx
