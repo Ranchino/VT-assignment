@@ -36,6 +36,13 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault();
 
         let searchForArrival;
+        let markVas = 0
+        let markBus = 0
+        let markTram = 0
+        let markBoat = 0
+        let markTrain = 0
+
+
         let date;
         let time;
 
@@ -44,10 +51,40 @@ document.addEventListener('DOMContentLoaded', function () {
         
         const input = document.getElementById("inlineRadio2") as HTMLInputElement;
 
+        const checkVas = document.getElementById("inlineCheck1") as HTMLInputElement;
+        const checkBus = document.getElementById("inlineCheck2") as HTMLInputElement;
+        const checkTram = document.getElementById("inlineCheck3") as HTMLInputElement;
+        const checkBoat = document.getElementById("inlineCheck4") as HTMLInputElement;
+        const checkTrain = document.getElementById("inlineCheck5") as HTMLInputElement;
+
+
         const getDate = document.getElementById("dateForTrip") as HTMLInputElement;
         const getTime = document.getElementById("timeForTrip") as HTMLInputElement;
         date = getDate.value
         time = getTime.value
+    
+        if( checkVas.checked ){
+            markVas = 1
+        }
+        if( checkBus.checked ){
+            markBus = 1
+        }
+        if ( checkTram.checked ){
+            markTram = 1
+        }
+        if ( checkBoat.checked ){
+            markBoat = 1
+        } 
+        if ( checkTrain.checked ){
+            markTrain = 1
+        }
+
+        console.log("Vas :" + markVas)
+        console.log("Bus :" + markBus)
+        console.log("Tram :" + markTram)
+        console.log("Boat :" + markBoat)
+        console.log("Train :" + markTrain)
+
         
         if (input.checked) {
             searchForArrival = 1
@@ -58,6 +95,11 @@ document.addEventListener('DOMContentLoaded', function () {
             body: JSON.stringify(
                 {  
                     searchForArrival: searchForArrival,
+                    markVas: markVas,
+                    markBus: markBus,
+                    markTram: markTram,
+                    markBoat: markBoat,
+                    markTrain: markTrain,
                     date: date,
                     time: time,
                     idFrom: idFrom.dataset.id,
