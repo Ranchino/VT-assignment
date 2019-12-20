@@ -136,7 +136,7 @@ function printMatchingRoutes(route: any) {
                    
                     showRouteBtn.innerHTML = "Visa alla hållplatser"
                     showRouteBtn.addEventListener("click", (e:Event) => getRoutes(station.Leg.JourneyDetailRef.ref, station.Leg.id));
-                    vehicleNumber.innerHTML += station.Leg.name;
+                    vehicleNumber.innerHTML += station.Leg.name + " " + station.Leg.Origin.time;
                     from.innerHTML += "Från " + station.Leg.Origin.name;
                     to.innerHTML += "Till " + station.Leg.Destination.name; 
                     container.append(vehicleNumber, from, journeyContainer, to, showRouteBtn)
