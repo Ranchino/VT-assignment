@@ -92,19 +92,29 @@ router.post('/getTrips', async function(req: Request, res: Response, next: NextF
             Authorization: bearer + " " + accessToken
         }
     })
-
+    
     for (var a = 0; a < journeyAPI.data.JourneyDetail.Stop.length; a++) {
         if( a >= origin && a <= destination){
-            busRoutes.push(
-                { 
-                    "name": journeyAPI.data.JourneyDetail.Stop[a].name,
-                    "arrivalTime": journeyAPI.data.JourneyDetail.Stop[a].arrTime 
-                } 
-            )
+            if(journeyAPI.data.JourneyDetail.Stop[a].rtArrTime === journeyAPI.data.JourneyDetail.Stop[a].arrTime){
+                busRoutes.push(
+                    { 
+                        "name": journeyAPI.data.JourneyDetail.Stop[a].name,
+                        "arrivalTime": journeyAPI.data.JourneyDetail.Stop[a].arrTime
+                    } 
+                )
+            }else {
+               
+                busRoutes.push(
+                    { 
+                        "name": journeyAPI.data.JourneyDetail.Stop[a].name,
+                        "arrivalTime": journeyAPI.data.JourneyDetail.Stop[a].arrTime,
+                        "newTime": journeyAPI.data.JourneyDetail.Stop[a].rtArrTime
+                    }
+                )
+            }
 
         }
     }
-
     console.log(busRoutes)
 
 
