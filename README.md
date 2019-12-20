@@ -13,21 +13,21 @@
  
 
 ### Krav för godkänt:
-Ni skall använda er av Västtrafiks auth 2 autentisering.
-Uppdatering av access_token skall göras automatiskt då giltighetstiden för en token gått ut (tips, använd er av en egen-skapad middleware).
-Autentiseringen skall gå genom ett eget api i Node (för G-nivå räcker det att ha ett API/NodeJS server som levererar en access_token).
-Samtliga hållplatser skall hämtas och sparas i en JSON-fil. Denna hämtning skall alltså inte ske varje gång man skall söka fram en resa.
-Användaren skall med hjälp av två input-fält kunna ange ”från och till” för en resa (hållplatser).
-Användaren skall kunna mata in datum och tid samt kunna välja om tiden är för avgående tid eller ankommande tid (när man vill anlända till destinationen eller när ex. Bussen lämnar hållplatsen).
+Ni skall använda er av Västtrafiks auth 2 autentisering. <br>
+Uppdatering av access_token skall göras automatiskt då giltighetstiden för en token gått ut (tips, använd er av en egen-skapad middleware).<br>
+Autentiseringen skall gå genom ett eget api i Node (för G-nivå räcker det att ha ett API/NodeJS server som levererar en access_token).<br>
+Samtliga hållplatser skall hämtas och sparas i en JSON-fil. Denna hämtning skall alltså inte ske varje gång man skall söka fram en resa.<br>
+Användaren skall med hjälp av två input-fält kunna ange ”från och till” för en resa (hållplatser).<br>
+Användaren skall kunna mata in datum och tid samt kunna välja om tiden är för avgående tid eller ankommande tid (när man vill anlända till destinationen eller när ex. Bussen lämnar hållplatsen).<br>
 Samtliga hållplatser den hittade rutten kommer stanna på skall visas upp vid hittad resa.
 
 ### Krav för väl godkänt:
-Alla punkter för godkänt är uppfyllda
-Alla anrop som görs till Västtrafiks API skall gå igenom en egen-skapad NodeJS server.
-Vid sökning av en resa skall de tre nästkommande resorna (som passar in på sökningen) visas. Samtliga av de visade resorna skall visa alla dess stop med tid för varje stop (när ex bussen anländer till varje hållplats i rutten).
-Eventuella förseningar skall visas upp för alla resor.
-Användaren skall kunna filtrera sin sökning på resetyp (buss, spårvagn, tåg, båt osv.)
-Det skall finnas en automatisering så att alla hållplatser hämtas på nytt vid specifika tidpunkter (servern hämtar alla hållplatser och sparar dem i JSON-filen en gång om dagen).
+Alla punkter för godkänt är uppfyllda <br>
+Alla anrop som görs till Västtrafiks API skall gå igenom en egen-skapad NodeJS server.<br>
+Vid sökning av en resa skall de tre nästkommande resorna (som passar in på sökningen) visas. Samtliga av de visade resorna skall visa alla dess stop med tid för varje stop (när ex bussen anländer till varje hållplats i rutten).<br>
+Eventuella förseningar skall visas upp för alla resor.<br>
+Användaren skall kunna filtrera sin sökning på resetyp (buss, spårvagn, tåg, båt osv.)<br>
+Det skall finnas en automatisering så att alla hållplatser hämtas på nytt vid specifika tidpunkter (servern hämtar alla hållplatser och sparar dem i JSON-filen en gång om dagen).<br>
 
 
 ## Developers
