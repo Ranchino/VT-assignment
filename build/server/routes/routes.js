@@ -17,6 +17,8 @@ const express_1 = __importDefault(require("express"));
 const axios_1 = __importDefault(require("axios"));
 const fs_1 = __importDefault(require("fs"));
 let router = express_1.default.Router();
+var origin;
+var destination;
 router.use('/', authenticationToken_1.authentication);
 router.get('/', (req, res, next) => {
     let bearer = authenticationToken_1.token.tokenType;
@@ -86,24 +88,46 @@ router.post('/getTrips', function (req, res, next) {
                 Authorization: bearer + " " + accessToken
             }
         });
-        var uri = tripsAPI.data.TripList.Trip[0].Leg.JourneyDetailRef.ref;
-        var uri_dec = decodeURIComponent(uri);
-        let origin = tripsAPI.data.TripList.Trip[0].Leg.Origin.routeIdx;
-        let destination = tripsAPI.data.TripList.Trip[0].Leg.Destination.routeIdx;
+        busRoutes.push(tripsAPI.data.TripList.Trip);
+        var uri;
+        let hasArray = tripsAPI.data.TripList.Trip[0].Leg;
+        if (Array.isArray(hasArray)) {
+            console.log("har array");
+            uri = tripsAPI.data.TripList.Trip[0].Leg[0].JourneyDetailRef.ref;
+            origin = tripsAPI.data.TripList.Trip[0].Leg[0].Origin.routeIdx;
+            destination = tripsAPI.data.TripList.Trip[0].Leg[0].Destination.routeIdx;
+        }
+        else {
+            console.log("har inte array");
+            uri = tripsAPI.data.TripList.Trip[0].Leg.JourneyDetailRef.ref;
+            origin = tripsAPI.data.TripList.Trip[0].Leg.Origin.routeIdx;
+            destination = tripsAPI.data.TripList.Trip[0].Leg.Destination.routeIdx;
+        }
+        res.send(busRoutes);
+    });
+});
+router.post('/journey', function (req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let journeys = [];
+        let bearer = authenticationToken_1.token.tokenType;
+        let accessToken = authenticationToken_1.token.accessToken;
+        console.log(req.body.ref);
+        var uri_dec = decodeURIComponent(req.body.ref);
         let journeyAPI = yield axios_1.default.get(uri_dec, {
             headers: {
                 Authorization: bearer + " " + accessToken
             }
         });
-        for (var a = 0; a < journeyAPI.data.JourneyDetail.Stop.length; a++) {
-            if (a >= origin && a <= destination) {
-                busRoutes.push({
-                    "name": journeyAPI.data.JourneyDetail.Stop[a].name,
-                    "arrivalTime": journeyAPI.data.JourneyDetail.Stop[a].arrTime
+        for (var i = 0; i < journeyAPI.data.JourneyDetail.Stop.length; i++) {
+            if (i >= origin && i <= destination) {
+                journeys.push({
+                    "hallplats": journeyAPI.data.JourneyDetail.Stop[i].name,
+                    "time": journeyAPI.data.JourneyDetail.Stop[i].rtArrTime
                 });
             }
         }
-        console.log(busRoutes);
+        console.log(journeys);
+        res.send(journeys);
     });
 });
 exports.default = router;

@@ -5,6 +5,9 @@ import fs from 'fs'
 import { text } from 'body-parser'
 let router = express.Router()
 
+var origin: any;
+var destination: any;
+
 router.use('/', authentication)
 
 router.get('/', (req: Request, res: Response, next: NextFunction) => {
@@ -81,33 +84,57 @@ router.post('/getTrips', async function(req: Request, res: Response, next: NextF
         }
     })
 
-    var uri = tripsAPI.data.TripList.Trip[0].Leg.JourneyDetailRef.ref
-    var uri_dec = decodeURIComponent(uri);
+    busRoutes.push(tripsAPI.data.TripList.Trip);
 
-    let origin = tripsAPI.data.TripList.Trip[0].Leg.Origin.routeIdx
-    let destination = tripsAPI.data.TripList.Trip[0].Leg.Destination.routeIdx
-    
+    var uri: any;
+
+    let hasArray = tripsAPI.data.TripList.Trip[0].Leg
+
+    if(Array.isArray(hasArray)) {
+        console.log("har array")
+        uri = tripsAPI.data.TripList.Trip[0].Leg[0].JourneyDetailRef.ref
+        origin = tripsAPI.data.TripList.Trip[0].Leg[0].Origin.routeIdx
+        destination = tripsAPI.data.TripList.Trip[0].Leg[0].Destination.routeIdx
+    } else {
+        console.log("har inte array")
+        uri = tripsAPI.data.TripList.Trip[0].Leg.JourneyDetailRef.ref
+        origin = tripsAPI.data.TripList.Trip[0].Leg.Origin.routeIdx
+        destination = tripsAPI.data.TripList.Trip[0].Leg.Destination.routeIdx
+    }
+
+    res.send(busRoutes)
+})
+
+router.post('/journey', async function(req: Request, res: Response, next: NextFunction) {
+    let journeys: any = []
+    let bearer: string = token.tokenType
+    let accessToken: string = token.accessToken
+
+    console.log(req.body.ref)
+    var uri_dec = decodeURIComponent(req.body.ref);
+
     let journeyAPI = await axios.get(uri_dec, {
         headers: {
             Authorization: bearer + " " + accessToken
         }
     })
 
-    for (var a = 0; a < journeyAPI.data.JourneyDetail.Stop.length; a++) {
-        if( a >= origin && a <= destination){
-            busRoutes.push(
-                { 
-                    "name": journeyAPI.data.JourneyDetail.Stop[a].name,
-                    "arrivalTime": journeyAPI.data.JourneyDetail.Stop[a].arrTime 
-                } 
+    for (var i = 0; i < journeyAPI.data.JourneyDetail.Stop.length; i++) {
+        if( i >= origin && i <= destination){
+            journeys.push(
+                {
+                    "hallplats": journeyAPI.data.JourneyDetail.Stop[i].name,
+                    "time": journeyAPI.data.JourneyDetail.Stop[i].rtArrTime
+                }
             )
-
         }
     }
 
-    console.log(busRoutes)
+    console.log(journeys)
+    res.send(journeys)
 
 
 })
+
 
 export default router

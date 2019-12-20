@@ -1,10 +1,3 @@
-console.log("Script");
-
-/* import axios from 'axios'
-
-axios.get("/reger") */
-
-
 
 function switchInputText(){
     let inputFrom = (<HTMLInputElement>document.getElementById("inputFrom")).value;
@@ -76,25 +69,119 @@ document.addEventListener('DOMContentLoaded', function () {
             } // body data type must match "Content-Type" header
         });
         const json = await response.json();
-        console.log(json)
+        printMatchingRoutes(json);
     
     });
 })
 
 function printMatchingRoutes(route: any) {
-    for (var i = 0; i < route.Trip.length; i++) {
-        if (i === 3) {
-            break
-        }
-        console.log(route.Trip[i])
-        const container = document.getElementById("theJourneyContainer")!;
-        const h3 = document.createElement("h3");
-        const p = document.createElement("p");
-        h3.innerHTML = route.Trip[i].Leg.name
-        p.innerHTML = "Från " + route.Trip[i].Leg.Origin.name + " <strong>" + route.Trip[i].Leg.Origin.time + "</strong>";
-        container.append(h3, p)
+    const container = document.getElementById("theJourneyContainer")!;
+    container.innerHTML = "";
+    for (var i = 0; i < route[0].length; i++) {
+        const isTripArray = Array.isArray(route[0][i].Leg);
 
+        if (!isTripArray) {
+            let station = route[0][i];
+              
+                if (station.Leg.type !== "WALK") {
+                    const container = document.getElementById("theJourneyContainer")!;
+                    const from = document.createElement("p");
+                    const to = document.createElement("p");
+                    const vehicleNumber = document.createElement("h3");
+                    const showRouteBtn = document.createElement("button");
+                    const journeyContainer = document.createElement("div");
+                    journeyContainer.id = station.Leg.id;
+                   
+                    showRouteBtn.innerHTML = "Visa alla hållplatser"
+                    showRouteBtn.addEventListener("click", (e:Event) => getRoutes(station.Leg.JourneyDetailRef.ref, station.Leg.id));
+                    vehicleNumber.innerHTML += station.Leg.name;
+                    from.innerHTML += "Från " + station.Leg.Origin.name;
+                    to.innerHTML += "Till " + station.Leg.Destination.name; 
+                    container.append(vehicleNumber, from, journeyContainer, to, showRouteBtn)
+
+
+                } else {
+                    const container = document.getElementById("theJourneyContainer")!;
+                    const from = document.createElement("p");
+                    const to = document.createElement("p");
+                    const vehicleNumber = document.createElement("h3");
+                    const journeyContainer = document.createElement("div");
+                    journeyContainer.id = station.journeyNumber;
+                   
+                    vehicleNumber.innerHTML += station.name;
+                    from.innerHTML += "Från " + station.Origin.name;
+                    to.innerHTML += "Till " + station.Destination.name; 
+                    container.append(vehicleNumber, from, journeyContainer, to)
+
+                }
+
+        } else {
+            for (let [station] of route[0][i].Leg.entries()) {
+
+                if (station.type !== "WALK") {
+                    const container = document.getElementById("theJourneyContainer")!;
+                    const from = document.createElement("p");
+                    const to = document.createElement("p");
+                    const vehicleNumber = document.createElement("h3");
+                    const showRouteBtn = document.createElement("button");
+                    const journeyContainer = document.createElement("div");
+                    journeyContainer.id = station.id;
+                   
+                    showRouteBtn.innerHTML = "Visa alla hållplatser"
+                    showRouteBtn.addEventListener("click", (e:Event) => getRoutes(station.JourneyDetailRef.ref, station.id));
+                    vehicleNumber.innerHTML += station.name;
+                    from.innerHTML += "Från " + station.Origin.name;
+                    to.innerHTML += "Till " + station.Destination.name; 
+                    container.append(vehicleNumber, from, journeyContainer, to, showRouteBtn)
+
+
+                } else {
+                    const container = document.getElementById("theJourneyContainer")!;
+                    const from = document.createElement("p");
+                    const to = document.createElement("p");
+                    const vehicleNumber = document.createElement("h3");
+                    const journeyContainer = document.createElement("div");
+                    journeyContainer.id = station.journeyNumber;
+                   
+                    vehicleNumber.innerHTML += station.name;
+                    from.innerHTML += "Från " + station.Origin.name;
+                    to.innerHTML += "Till " + station.Destination.name; 
+                    container.append(vehicleNumber, from, journeyContainer, to)
+
+                }
+            }
+            
+        }
     }
+}
+
+async function getRoutes(ref: any, id: any) {
+    const response = await fetch('/api/journey', {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        body: JSON.stringify(
+            {  
+                ref: ref,
+            }
+        ),
+        headers: {
+            'Content-Type': 'application/json'
+        } // body data type must match "Content-Type" header
+    });
+    const json = await response.json();
+    printAllJourneys(json, id)
+}
+
+async function printAllJourneys(journeys: any, id: any) {
+    const getTestContainer = document.getElementById(id)!;
+    const container = document.createElement("ul");
+    for (var i = 0; i < journeys.length; i++) {
+    
+        const li = document.createElement("li");
+        li.innerHTML = journeys[i].hallplats + " " + journeys[i].time;
+        container.append(li)
+    }
+
+    getTestContainer.appendChild(container)
 }
 
 function getDate(){
