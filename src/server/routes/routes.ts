@@ -33,9 +33,7 @@ router.get('/json', (req: Request, res: Response, next: NextFunction) => {
             console.log("ERROR: ", error)
         }).then(next)
     }else {
-        console.log("asd")
         next()
-        
     }
 })
 
