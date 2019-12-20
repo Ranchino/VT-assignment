@@ -13,7 +13,7 @@
  
 
 ### Krav för godkänt:
-1. Ni skall använda er av Västtrafiks auth 2 autentisering. <br> 
+1. Ni skall använda er av Västtrafiks auth 2 autentisering.  <br>
 2. Uppdatering av access_token skall göras automatiskt då giltighetstiden för en token gått ut (tips, använd er av en egen-skapad middleware).<br>
 3. Autentiseringen skall gå genom ett eget api i Node (för G-nivå räcker det att ha ett API/NodeJS server som levererar en access_token).<br> 
 4. Samtliga hållplatser skall hämtas och sparas i en JSON-fil. Denna hämtning skall alltså inte ske varje gång man skall söka fram en resa.<br>
@@ -33,6 +33,6 @@
 ## Developers
 
 [Sebastian Johansson](https://www.linkedin.com/in/sebastian-johansson-3a692617b/) <br>
-[Anel Putorovic](https://www.linkedin.com/in/anel-poturovic-5700a2184/) <br>
+[Anel Poturovic](https://www.linkedin.com/in/anel-poturovic-5700a2184/) <br>
 [Ranj Bahadin](https://www.linkedin.com/in/ranj-bahadin-764a69131/) <br>
 [David Yan](https://www.linkedin.com/in/david-yan97/)
