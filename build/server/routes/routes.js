@@ -17,11 +17,7 @@ const express_1 = __importDefault(require("express"));
 const axios_1 = __importDefault(require("axios"));
 const fs_1 = __importDefault(require("fs"));
 let router = express_1.default.Router();
-router.get('/', authenticationToken_1.authentication);
-/* router.get('/', (req: Request, res: Response, next: NextFunction) => {
-    res.status(200).json({ token: token })
-    next()
-}) */
+router.use('/', authenticationToken_1.authentication);
 router.get('/', (req, res, next) => {
     let bearer = authenticationToken_1.token.tokenType;
     let accessToken = authenticationToken_1.token.accessToken;
@@ -77,11 +73,11 @@ router.post('/getTrips', function (req, res, next) {
         let url;
         let busRoutes = [];
         busRoutes = [];
-        if (req.body.time && req.body.date && req.body.searchForArrival) {
-            url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&date=${req.body.date}&time=${req.body.time}&searchForArrival=${req.body.searchForArrival}&format=json`;
+        if (req.body.searchForArrival) {
+            url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&date=${req.body.date}&time=${req.body.time}&searchForArrival=${req.body.searchForArrival}&numTrips=4&format=json`;
         }
         else {
-            url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&format=json`;
+            url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&date=${req.body.date}&time=${req.body.time}&numTrips=4&format=json`;
         }
         let bearer = authenticationToken_1.token.tokenType;
         let accessToken = authenticationToken_1.token.accessToken;
@@ -92,7 +88,6 @@ router.post('/getTrips', function (req, res, next) {
         });
         var uri = tripsAPI.data.TripList.Trip[0].Leg.JourneyDetailRef.ref;
         var uri_dec = decodeURIComponent(uri);
-        console.log(uri_dec);
         let origin = tripsAPI.data.TripList.Trip[0].Leg.Origin.routeIdx;
         let destination = tripsAPI.data.TripList.Trip[0].Leg.Destination.routeIdx;
         let journeyAPI = yield axios_1.default.get(uri_dec, {
@@ -100,15 +95,12 @@ router.post('/getTrips', function (req, res, next) {
                 Authorization: bearer + " " + accessToken
             }
         });
-        for (var i = origin; i <= destination; i++) {
-            console.log(i);
-            for (var a = 0; a < journeyAPI.data.JourneyDetail.Stop.length; a++) {
-                if (journeyAPI.data.JourneyDetail.Stop[a].routeIdx.includes(i)) {
-                    busRoutes.push({
-                        "name": journeyAPI.data.JourneyDetail.Stop[a].name,
-                        "arrivalTime": journeyAPI.data.JourneyDetail.Stop[a].arrTime
-                    });
-                }
+        for (var a = 0; a < journeyAPI.data.JourneyDetail.Stop.length; a++) {
+            if (a >= origin && a <= destination) {
+                busRoutes.push({
+                    "name": journeyAPI.data.JourneyDetail.Stop[a].name,
+                    "arrivalTime": journeyAPI.data.JourneyDetail.Stop[a].arrTime
+                });
             }
         }
         console.log(busRoutes);

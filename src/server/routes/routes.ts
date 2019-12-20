@@ -5,11 +5,8 @@ import fs from 'fs'
 import { text } from 'body-parser'
 let router = express.Router()
 
-router.get('/', authentication)
-/* router.get('/', (req: Request, res: Response, next: NextFunction) => {
-    res.status(200).json({ token: token })
-    next()
-}) */
+router.use('/', authentication)
+
 router.get('/', (req: Request, res: Response, next: NextFunction) => {
     let bearer: string = token.tokenType
     let accessToken: string = token.accessToken
@@ -68,9 +65,9 @@ router.post('/getTrips', async function(req: Request, res: Response, next: NextF
     busRoutes = [];
 
     if (req.body.searchForArrival) {
-        url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&date=${req.body.date}&time=${req.body.time}&searchForArrival=${req.body.searchForArrival}&format=json`
+        url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&date=${req.body.date}&time=${req.body.time}&searchForArrival=${req.body.searchForArrival}&numTrips=4&format=json`
     } else {
-        url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&date=${req.body.date}&time=${req.body.time}&format=json`
+        url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&date=${req.body.date}&time=${req.body.time}&numTrips=4&format=json`
     }
     
     
@@ -84,31 +81,17 @@ router.post('/getTrips', async function(req: Request, res: Response, next: NextF
         }
     })
 
-    var uri = tripsAPI.data.TripList.Trip[1].Leg.JourneyDetailRef.ref
+    var uri = tripsAPI.data.TripList.Trip[0].Leg.JourneyDetailRef.ref
     var uri_dec = decodeURIComponent(uri);
 
-    console.log(uri_dec)
-
-    let origin = tripsAPI.data.TripList.Trip[1].Leg.Origin.routeIdx
-    let destination = tripsAPI.data.TripList.Trip[1].Leg.Destination.routeIdx
+    let origin = tripsAPI.data.TripList.Trip[0].Leg.Origin.routeIdx
+    let destination = tripsAPI.data.TripList.Trip[0].Leg.Destination.routeIdx
     
     let journeyAPI = await axios.get(uri_dec, {
         headers: {
             Authorization: bearer + " " + accessToken
         }
     })
-
-    console.log(origin)
-    console.log(destination)
-    
-    console.log(journeyAPI.data.JourneyDetail.Stop)
-
-    let test = destination - origin
-    console.log(test)
-
-
-
-    //Test
 
     for (var a = 0; a < journeyAPI.data.JourneyDetail.Stop.length; a++) {
         if( a >= origin && a <= destination){
@@ -120,38 +103,10 @@ router.post('/getTrips', async function(req: Request, res: Response, next: NextF
             )
 
         }
-
-
-
-        // for (var i = origin; i <= destination; i++) {
-        //     if (journeyAPI.data.JourneyDetail.Stop[a].routeIdx.includes(i)) {
-        //         busRoutes.push(
-        //             { 
-        //                 "name": journeyAPI.data.JourneyDetail.Stop[a].name,
-        //                 "arrivalTime": journeyAPI.data.JourneyDetail.Stop[a].arrTime 
-        //             } 
-        //         )
-        //     }
-        // }
     }
 
-
-    // for (var i = origin; i <= destination; i++) {
-    //     console.log(i)
-    //     for (var a = 0; a < journeyAPI.data.JourneyDetail.Stop.length; a++) {
-    //         if (journeyAPI.data.JourneyDetail.Stop[a].routeIdx.includes(i)) {
-    //             busRoutes.push(
-    //                 { 
-    //                     "name": journeyAPI.data.JourneyDetail.Stop[a].name,
-    //                     "arrivalTime": journeyAPI.data.JourneyDetail.Stop[a].arrTime 
-    //                 } 
-    //             )
-    //         }
-    //     }
-        
-    // }
-
     console.log(busRoutes)
+
 
 })
 

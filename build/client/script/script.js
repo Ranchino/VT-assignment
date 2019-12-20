@@ -9,15 +9,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 console.log("Script");
+/* import axios from 'axios'
+
+axios.get("/reger") */
 function switchInputText() {
     let inputFrom = document.getElementById("inputFrom").value;
+    let inputFromData = document.getElementById("inputFrom").dataset.id;
     let inputTo = document.getElementById("inputTo").value;
+    let inputToData = document.getElementById("inputTo").dataset.id;
     if (inputFrom == "" || inputTo == "") {
         alert("fyll in alla fält");
     }
     else {
         document.getElementById("inputFrom").value = inputTo;
+        document.getElementById("inputFrom").dataset.id = inputToData;
         document.getElementById("inputTo").value = inputFrom;
+        document.getElementById("inputTo").dataset.id = inputFromData;
     }
 }
 window.onload = function () {
@@ -35,12 +42,12 @@ document.addEventListener('DOMContentLoaded', function () {
             const idFrom = document.getElementById("inputFrom");
             const idTo = document.getElementById("inputTo");
             const input = document.getElementById("inlineRadio2");
+            const getDate = document.getElementById("dateForTrip");
+            const getTime = document.getElementById("timeForTrip");
+            date = getDate.value;
+            time = getTime.value;
             if (input.checked) {
                 searchForArrival = 1;
-                const getDate = document.getElementById("dateForTrip");
-                const getTime = document.getElementById("timeForTrip");
-                date = getDate.value;
-                time = getTime.value;
             }
             const response = yield fetch('/api/getTrips', {
                 method: 'POST',

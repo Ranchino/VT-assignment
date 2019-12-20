@@ -2,211 +2,338 @@
     "Trips": [
         {
             "noNamespaceSchemaLocation": "http://api.vasttrafik.se/v1/hafasRestTrip.xsd",
-            "servertime": "04:13",
-            "serverdate": "2019-12-19",
+            "servertime": "00:44",
+            "serverdate": "2019-12-20",
             "Trip": [
                 {
-                    "Leg": {
-                        "name": "Buss 17",
-                        "sname": "17",
-                        "journeyNumber": "1",
-                        "type": "BUS",
-                        "id": "9015014501700001",
-                        "direction": "Östra Sjukhuset",
-                        "fgColor": "#006C93",
-                        "bgColor": "#D8E8B0",
-                        "stroke": "Solid",
-                        "accessibility": "wheelChair",
-                        "Origin": {
-                            "name": "Swedenborgsplatsen, Göteborg",
-                            "type": "ST",
-                            "id": "9022014006470001",
-                            "routeIdx": "10",
-                            "time": "04:48",
-                            "date": "2019-12-19",
-                            "track": "A",
-                            "rtTime": "04:45",
-                            "rtDate": "2019-12-19",
-                            "$": "\n"
+                    "alternative": "true",
+                    "Leg": [
+                        {
+                            "name": "Spårvagn 6",
+                            "sname": "6",
+                            "journeyNumber": "277",
+                            "type": "TRAM",
+                            "id": "9015014500600277",
+                            "direction": "Centralstationen",
+                            "fgColor": "#F89828",
+                            "bgColor": "#00435C",
+                            "stroke": "Solid",
+                            "accessibility": "wheelChair",
+                            "Origin": {
+                                "name": "Vågmästareplatsen, Göteborg",
+                                "type": "ST",
+                                "id": "9022014007520001",
+                                "routeIdx": "12",
+                                "time": "00:37",
+                                "date": "2019-12-20",
+                                "track": "A",
+                                "$": "\n"
+                            },
+                            "Destination": {
+                                "name": "Nordstan, Göteborg",
+                                "type": "ST",
+                                "id": "9022014004945001",
+                                "routeIdx": "15",
+                                "time": "00:42",
+                                "date": "2019-12-20",
+                                "track": "A",
+                                "rtTime": "00:44",
+                                "rtDate": "2019-12-20",
+                                "$": "\n"
+                            },
+                            "JourneyDetailRef": {
+                                "ref": "https://api.vasttrafik.se/bin/rest.exe/v2/journeyDetail?ref=658623%2F247562%2F736148%2F148533%2F80%3Fdate%3D2019-12-20%26station_evaId%3D7520001%26station_type%3Ddep%26format%3Djson%26"
+                            }
                         },
-                        "Destination": {
-                            "name": "Svingeln, Göteborg",
-                            "type": "ST",
-                            "id": "9022014006480007",
-                            "routeIdx": "15",
-                            "time": "05:01",
-                            "date": "2019-12-19",
-                            "track": "G",
-                            "rtTime": "04:58",
-                            "rtDate": "2019-12-19",
-                            "$": "\n"
-                        },
-                        "JourneyDetailRef": {
-                            "ref": "https://api.vasttrafik.se/bin/rest.exe/v2/journeyDetail?ref=525072%2F204277%2F176430%2F86809%2F80%3Fdate%3D2019-12-19%26station_evaId%3D6470001%26station_type%3Ddep%26format%3Djson%26"
+                        {
+                            "name": "Buss 16",
+                            "sname": "16",
+                            "journeyNumber": "309",
+                            "type": "BUS",
+                            "id": "9015014501600309",
+                            "direction": "Högsbohöjd",
+                            "fgColor": "#006C93",
+                            "bgColor": "#D8E8B0",
+                            "stroke": "Solid",
+                            "accessibility": "wheelChair",
+                            "Origin": {
+                                "name": "Nordstan, Göteborg",
+                                "type": "ST",
+                                "id": "9022014004945001",
+                                "routeIdx": "13",
+                                "time": "23:51",
+                                "date": "2019-12-19",
+                                "track": "A",
+                                "rtTime": "00:51",
+                                "rtDate": "2019-12-20",
+                                "$": "\n"
+                            },
+                            "Destination": {
+                                "name": "Kapellplatsen, Göteborg",
+                                "type": "ST",
+                                "id": "9022014003760002",
+                                "routeIdx": "18",
+                                "time": "23:58",
+                                "date": "2019-12-19",
+                                "track": "B",
+                                "rtTime": "00:58",
+                                "rtDate": "2019-12-20",
+                                "$": "\n"
+                            },
+                            "JourneyDetailRef": {
+                                "ref": "https://api.vasttrafik.se/bin/rest.exe/v2/journeyDetail?ref=628056%2F238492%2F936702%2F258999%2F80%3Fdate%3D2019-12-19%26station_evaId%3D4945001%26station_type%3Ddep%26format%3Djson%26"
+                            }
                         }
-                    }
-                },
-                {
-                    "Leg": {
-                        "name": "Buss 17",
-                        "sname": "17",
-                        "journeyNumber": "3",
-                        "type": "BUS",
-                        "id": "9015014501700003",
-                        "direction": "Östra Sjukhuset",
-                        "fgColor": "#006C93",
-                        "bgColor": "#D8E8B0",
-                        "stroke": "Solid",
-                        "accessibility": "wheelChair",
-                        "Origin": {
-                            "name": "Swedenborgsplatsen, Göteborg",
-                            "type": "ST",
-                            "id": "9022014006470001",
-                            "routeIdx": "10",
-                            "time": "05:08",
-                            "date": "2019-12-19",
-                            "track": "A",
-                            "rtTime": "05:08",
-                            "rtDate": "2019-12-19",
-                            "$": "\n"
-                        },
-                        "Destination": {
-                            "name": "Svingeln, Göteborg",
-                            "type": "ST",
-                            "id": "9022014006480007",
-                            "routeIdx": "15",
-                            "time": "05:21",
-                            "date": "2019-12-19",
-                            "track": "G",
-                            "rtTime": "05:21",
-                            "rtDate": "2019-12-19",
-                            "$": "\n"
-                        },
-                        "JourneyDetailRef": {
-                            "ref": "https://api.vasttrafik.se/bin/rest.exe/v2/journeyDetail?ref=289812%2F125857%2F404446%2F105620%2F80%3Fdate%3D2019-12-19%26station_evaId%3D6470001%26station_type%3Ddep%26format%3Djson%26"
-                        }
-                    }
-                },
-                {
-                    "Leg": {
-                        "name": "Buss 17",
-                        "sname": "17",
-                        "journeyNumber": "5",
-                        "type": "BUS",
-                        "id": "9015014501700005",
-                        "direction": "Östra Sjukhuset",
-                        "fgColor": "#006C93",
-                        "bgColor": "#D8E8B0",
-                        "stroke": "Solid",
-                        "Origin": {
-                            "name": "Swedenborgsplatsen, Göteborg",
-                            "type": "ST",
-                            "id": "9022014006470001",
-                            "routeIdx": "10",
-                            "time": "05:28",
-                            "date": "2019-12-19",
-                            "track": "A",
-                            "rtTime": "05:28",
-                            "rtDate": "2019-12-19",
-                            "$": "\n"
-                        },
-                        "Destination": {
-                            "name": "Svingeln, Göteborg",
-                            "type": "ST",
-                            "id": "9022014006480007",
-                            "routeIdx": "15",
-                            "time": "05:44",
-                            "date": "2019-12-19",
-                            "track": "G",
-                            "rtTime": "05:44",
-                            "rtDate": "2019-12-19",
-                            "$": "\n"
-                        },
-                        "JourneyDetailRef": {
-                            "ref": "https://api.vasttrafik.se/bin/rest.exe/v2/journeyDetail?ref=980889%2F356217%2F422636%2F115645%2F80%3Fdate%3D2019-12-19%26station_evaId%3D6470001%26station_type%3Ddep%26format%3Djson%26"
-                        }
-                    }
-                },
-                {
-                    "Leg": {
-                        "name": "Buss 17",
-                        "sname": "17",
-                        "journeyNumber": "7",
-                        "type": "BUS",
-                        "id": "9015014501700007",
-                        "direction": "Östra Sjukhuset",
-                        "fgColor": "#006C93",
-                        "bgColor": "#D8E8B0",
-                        "stroke": "Solid",
-                        "accessibility": "wheelChair",
-                        "Origin": {
-                            "name": "Swedenborgsplatsen, Göteborg",
-                            "type": "ST",
-                            "id": "9022014006470001",
-                            "routeIdx": "10",
-                            "time": "05:49",
-                            "date": "2019-12-19",
-                            "track": "A",
-                            "rtTime": "05:49",
-                            "rtDate": "2019-12-19",
-                            "$": "\n"
-                        },
-                        "Destination": {
-                            "name": "Svingeln, Göteborg",
-                            "type": "ST",
-                            "id": "9022014006480007",
-                            "routeIdx": "15",
-                            "time": "06:05",
-                            "date": "2019-12-19",
-                            "track": "G",
-                            "rtTime": "06:05",
-                            "rtDate": "2019-12-19",
-                            "$": "\n"
-                        },
-                        "JourneyDetailRef": {
-                            "ref": "https://api.vasttrafik.se/bin/rest.exe/v2/journeyDetail?ref=492285%2F193350%2F466416%2F69113%2F80%3Fdate%3D2019-12-19%26station_evaId%3D6470001%26station_type%3Ddep%26format%3Djson%26"
-                        }
-                    }
+                    ]
                 },
                 {
                     "Leg": [
                         {
-                            "name": "Buss 22",
-                            "sname": "22",
-                            "journeyNumber": "1",
+                            "name": "Spårvagn 6",
+                            "sname": "6",
+                            "journeyNumber": "277",
+                            "type": "TRAM",
+                            "id": "9015014500600277",
+                            "direction": "Centralstationen",
+                            "fgColor": "#F89828",
+                            "bgColor": "#00435C",
+                            "stroke": "Solid",
+                            "accessibility": "wheelChair",
+                            "Origin": {
+                                "name": "Vågmästareplatsen, Göteborg",
+                                "type": "ST",
+                                "id": "9022014007520001",
+                                "routeIdx": "12",
+                                "time": "00:37",
+                                "date": "2019-12-20",
+                                "track": "A",
+                                "$": "\n"
+                            },
+                            "Destination": {
+                                "name": "Centralstationen, Göteborg",
+                                "type": "ST",
+                                "id": "9022014001950002",
+                                "routeIdx": "16",
+                                "time": "00:43",
+                                "date": "2019-12-20",
+                                "track": "B",
+                                "rtTime": "00:46",
+                                "rtDate": "2019-12-20",
+                                "$": "\n"
+                            },
+                            "JourneyDetailRef": {
+                                "ref": "https://api.vasttrafik.se/bin/rest.exe/v2/journeyDetail?ref=308094%2F130719%2F232678%2F13641%2F80%3Fdate%3D2019-12-20%26station_evaId%3D7520001%26station_type%3Ddep%26format%3Djson%26"
+                            }
+                        },
+                        {
+                            "name": "Gå",
+                            "type": "WALK",
+                            "Origin": {
+                                "name": "Centralstationen, Göteborg",
+                                "type": "ST",
+                                "id": "9022014001950002",
+                                "time": "00:48",
+                                "date": "2019-12-20",
+                                "track": "B",
+                                "$": "\n"
+                            },
+                            "Destination": {
+                                "name": "Centralstationen, Göteborg",
+                                "type": "ST",
+                                "id": "9022014001950005",
+                                "time": "00:48",
+                                "date": "2019-12-20",
+                                "track": "E",
+                                "$": "\n"
+                            }
+                        },
+                        {
+                            "name": "Spårvagn 10",
+                            "sname": "10",
+                            "journeyNumber": "242",
+                            "type": "TRAM",
+                            "id": "9015014501000242",
+                            "direction": "Guldheden",
+                            "fgColor": "#D8E8B0",
+                            "bgColor": "#006C93",
+                            "stroke": "Solid",
+                            "accessibility": "wheelChair",
+                            "Origin": {
+                                "name": "Centralstationen, Göteborg",
+                                "type": "ST",
+                                "id": "9022014001950005",
+                                "routeIdx": "0",
+                                "time": "00:53",
+                                "date": "2019-12-20",
+                                "track": "E",
+                                "rtTime": "00:53",
+                                "rtDate": "2019-12-20",
+                                "$": "\n"
+                            },
+                            "Destination": {
+                                "name": "Kapellplatsen, Göteborg",
+                                "type": "ST",
+                                "id": "9022014003760002",
+                                "routeIdx": "5",
+                                "time": "01:00",
+                                "date": "2019-12-20",
+                                "track": "B",
+                                "rtTime": "01:00",
+                                "rtDate": "2019-12-20",
+                                "$": "\n"
+                            },
+                            "JourneyDetailRef": {
+                                "ref": "https://api.vasttrafik.se/bin/rest.exe/v2/journeyDetail?ref=697620%2F239976%2F902356%2F218639%2F80%3Fdate%3D2019-12-20%26station_evaId%3D1950005%26station_type%3Ddep%26format%3Djson%26"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "valid": "false",
+                    "Leg": [
+                        {
+                            "name": "Buss 142",
+                            "sname": "142",
+                            "journeyNumber": "4",
                             "type": "BUS",
-                            "id": "9015014502200001",
-                            "direction": "Hjalmar Brantingsplatsen",
+                            "id": "9015014514200004",
+                            "direction": "Backa",
                             "fgColor": "#006C93",
                             "bgColor": "#FFFFFF",
                             "stroke": "Solid",
                             "accessibility": "wheelChair",
                             "Origin": {
-                                "name": "Swedenborgsplatsen, Göteborg",
+                                "name": "Vågmästareplatsen, Göteborg",
                                 "type": "ST",
-                                "id": "9022014006470001",
-                                "routeIdx": "29",
-                                "time": "05:51",
-                                "date": "2019-12-19",
-                                "track": "A",
-                                "rtTime": "05:44",
-                                "rtDate": "2019-12-19",
+                                "id": "9022014007520008",
+                                "routeIdx": "6",
+                                "time": "00:51",
+                                "date": "2019-12-20",
+                                "track": "H",
+                                "rtTime": "00:51",
+                                "rtDate": "2019-12-20",
+                                "$": "\n"
+                            },
+                            "Destination": {
+                                "name": "Hjalmar Brantingsplatsen, Göteborg",
+                                "type": "ST",
+                                "id": "9022014003180005",
+                                "routeIdx": "7",
+                                "time": "00:53",
+                                "date": "2019-12-20",
+                                "track": "B1",
+                                "rtTime": "00:53",
+                                "rtDate": "2019-12-20",
+                                "$": "\n"
+                            },
+                            "JourneyDetailRef": {
+                                "ref": "https://api.vasttrafik.se/bin/rest.exe/v2/journeyDetail?ref=658362%2F250514%2F84958%2F176975%2F80%3Fdate%3D2019-12-20%26station_evaId%3D7520008%26station_type%3Ddep%26format%3Djson%26"
+                            }
+                        },
+                        {
+                            "name": "Gå",
+                            "type": "WALK",
+                            "Origin": {
+                                "name": "Hjalmar Brantingsplatsen, Göteborg",
+                                "type": "ST",
+                                "id": "9022014003180005",
+                                "time": "00:58",
+                                "date": "2019-12-20",
+                                "track": "B1",
+                                "$": "\n"
+                            },
+                            "Destination": {
+                                "name": "Hjalmar Brantingsplatsen, Göteborg",
+                                "type": "ST",
+                                "id": "9022014003180007",
+                                "time": "00:58",
+                                "date": "2019-12-20",
+                                "track": "B5",
+                                "$": "\n"
+                            }
+                        },
+                        {
+                            "name": "Buss 19",
+                            "sname": "19",
+                            "journeyNumber": "219",
+                            "type": "BUS",
+                            "id": "9015014501900219",
+                            "reachable": "false",
+                            "direction": "Fredriksdal",
+                            "fgColor": "#006C93",
+                            "bgColor": "#D8E8B0",
+                            "stroke": "Solid",
+                            "accessibility": "wheelChair",
+                            "Origin": {
+                                "name": "Hjalmar Brantingsplatsen, Göteborg",
+                                "type": "ST",
+                                "id": "9022014003180007",
+                                "routeIdx": "8",
+                                "time": "00:59",
+                                "date": "2019-12-20",
+                                "track": "B5",
+                                "rtTime": "00:57",
+                                "rtDate": "2019-12-20",
+                                "$": "\n"
+                            },
+                            "Destination": {
+                                "name": "Kapellplatsen, Göteborg",
+                                "type": "ST",
+                                "id": "9022014003760005",
+                                "routeIdx": "14",
+                                "time": "01:11",
+                                "date": "2019-12-20",
+                                "track": "E",
+                                "rtTime": "01:10",
+                                "rtDate": "2019-12-20",
+                                "$": "\n"
+                            },
+                            "JourneyDetailRef": {
+                                "ref": "https://api.vasttrafik.se/bin/rest.exe/v2/journeyDetail?ref=837303%2F309356%2F34844%2F261681%2F80%3Fdate%3D2019-12-20%26station_evaId%3D3180007%26station_type%3Ddep%26format%3Djson%26"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "alternative": "true",
+                    "Leg": [
+                        {
+                            "name": "Buss 159",
+                            "sname": "159",
+                            "journeyNumber": "6",
+                            "type": "BUS",
+                            "id": "9015014515900006",
+                            "direction": "Bergsjön",
+                            "fgColor": "#006C93",
+                            "bgColor": "#FFFFFF",
+                            "stroke": "Solid",
+                            "accessibility": "wheelChair",
+                            "Origin": {
+                                "name": "Vågmästareplatsen, Göteborg",
+                                "type": "ST",
+                                "id": "9022014007520008",
+                                "routeIdx": "11",
+                                "time": "00:50",
+                                "date": "2019-12-20",
+                                "track": "H",
+                                "rtTime": "00:52",
+                                "rtDate": "2019-12-20",
                                 "$": "\n"
                             },
                             "Destination": {
                                 "name": "Hjalmar Brantingsplatsen, Göteborg",
                                 "type": "ST",
                                 "id": "9022014003180003",
-                                "routeIdx": "31",
-                                "time": "05:56",
-                                "date": "2019-12-19",
+                                "routeIdx": "12",
+                                "time": "00:52",
+                                "date": "2019-12-20",
                                 "track": "A4",
-                                "rtTime": "05:47",
-                                "rtDate": "2019-12-19",
+                                "rtTime": "00:52",
+                                "rtDate": "2019-12-20",
                                 "$": "\n"
                             },
                             "JourneyDetailRef": {
-                                "ref": "https://api.vasttrafik.se/bin/rest.exe/v2/journeyDetail?ref=581856%2F224595%2F53760%2F167072%2F80%3Fdate%3D2019-12-19%26station_evaId%3D6470001%26station_type%3Ddep%26format%3Djson%26"
+                                "ref": "https://api.vasttrafik.se/bin/rest.exe/v2/journeyDetail?ref=113397%2F65646%2F190044%2F57223%2F80%3Fdate%3D2019-12-20%26station_evaId%3D7520008%26station_type%3Ddep%26format%3Djson%26"
                             }
                         },
                         {
@@ -216,41 +343,85 @@
                                 "name": "Hjalmar Brantingsplatsen, Göteborg",
                                 "type": "ST",
                                 "id": "9022014003180003",
-                                "time": "06:01",
-                                "date": "2019-12-19",
+                                "time": "00:57",
+                                "date": "2019-12-20",
                                 "track": "A4",
                                 "$": "\n"
                             },
                             "Destination": {
                                 "name": "Hjalmar Brantingsplatsen, Göteborg",
                                 "type": "ST",
-                                "id": "9022014003180001",
-                                "time": "06:01",
-                                "date": "2019-12-19",
-                                "track": "A3",
+                                "id": "9022014003180007",
+                                "time": "00:57",
+                                "date": "2019-12-20",
+                                "track": "B5",
                                 "$": "\n"
                             }
                         },
                         {
-                            "name": "Spårvagn 5",
-                            "sname": "5",
-                            "journeyNumber": "14",
-                            "type": "TRAM",
-                            "id": "9015014500500014",
-                            "direction": "Östra Sjukhuset",
-                            "fgColor": "#C63539",
-                            "bgColor": "#FFFFFF",
+                            "name": "Buss 19",
+                            "sname": "19",
+                            "journeyNumber": "219",
+                            "type": "BUS",
+                            "id": "9015014501900219",
+                            "direction": "Fredriksdal",
+                            "fgColor": "#006C93",
+                            "bgColor": "#D8E8B0",
                             "stroke": "Solid",
+                            "accessibility": "wheelChair",
                             "Origin": {
                                 "name": "Hjalmar Brantingsplatsen, Göteborg",
                                 "type": "ST",
-                                "id": "9022014003180001",
-                                "routeIdx": "13",
-                                "time": "06:02",
-                                "date": "2019-12-19",
-                                "track": "A3",
-                                "rtTime": "06:02",
-                                "rtDate": "2019-12-19",
+                                "id": "9022014003180007",
+                                "routeIdx": "8",
+                                "time": "00:59",
+                                "date": "2019-12-20",
+                                "track": "B5",
+                                "rtTime": "00:57",
+                                "rtDate": "2019-12-20",
+                                "$": "\n"
+                            },
+                            "Destination": {
+                                "name": "Kapellplatsen, Göteborg",
+                                "type": "ST",
+                                "id": "9022014003760005",
+                                "routeIdx": "14",
+                                "time": "01:11",
+                                "date": "2019-12-20",
+                                "track": "E",
+                                "rtTime": "01:10",
+                                "rtDate": "2019-12-20",
+                                "$": "\n"
+                            },
+                            "JourneyDetailRef": {
+                                "ref": "https://api.vasttrafik.se/bin/rest.exe/v2/journeyDetail?ref=744759%2F278508%2F781392%2F142445%2F80%3Fdate%3D2019-12-20%26station_evaId%3D3180007%26station_type%3Ddep%26format%3Djson%26"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "Leg": [
+                        {
+                            "name": "Spårvagn 5",
+                            "sname": "5",
+                            "journeyNumber": "276",
+                            "type": "TRAM",
+                            "id": "9015014500500276",
+                            "direction": "Torp",
+                            "fgColor": "#C63539",
+                            "bgColor": "#FFFFFF",
+                            "stroke": "Solid",
+                            "accessibility": "wheelChair",
+                            "Origin": {
+                                "name": "Vågmästareplatsen, Göteborg",
+                                "type": "ST",
+                                "id": "9022014007520001",
+                                "routeIdx": "12",
+                                "time": "00:56",
+                                "date": "2019-12-20",
+                                "track": "A",
+                                "rtTime": "00:56",
+                                "rtDate": "2019-12-20",
                                 "$": "\n"
                             },
                             "Destination": {
@@ -258,15 +429,15 @@
                                 "type": "ST",
                                 "id": "9022014001760001",
                                 "routeIdx": "16",
-                                "time": "06:07",
-                                "date": "2019-12-19",
+                                "time": "01:02",
+                                "date": "2019-12-20",
                                 "track": "A1",
-                                "rtTime": "06:07",
-                                "rtDate": "2019-12-19",
+                                "rtTime": "01:03",
+                                "rtDate": "2019-12-20",
                                 "$": "\n"
                             },
                             "JourneyDetailRef": {
-                                "ref": "https://api.vasttrafik.se/bin/rest.exe/v2/journeyDetail?ref=338202%2F117461%2F931112%2F352822%2F80%3Fdate%3D2019-12-19%26station_evaId%3D3180001%26station_type%3Ddep%26format%3Djson%26"
+                                "ref": "https://api.vasttrafik.se/bin/rest.exe/v2/journeyDetail?ref=981438%2F332167%2F662124%2F3917%2F80%3Fdate%3D2019-12-20%26station_evaId%3D7520001%26station_type%3Ddep%26format%3Djson%26"
                             }
                         },
                         {
@@ -276,57 +447,58 @@
                                 "name": "Brunnsparken, Göteborg",
                                 "type": "ST",
                                 "id": "9022014001760001",
-                                "time": "06:12",
-                                "date": "2019-12-19",
+                                "time": "01:07",
+                                "date": "2019-12-20",
                                 "track": "A1",
                                 "$": "\n"
                             },
                             "Destination": {
                                 "name": "Brunnsparken, Göteborg",
                                 "type": "ST",
-                                "id": "9022014001760004",
-                                "time": "06:12",
-                                "date": "2019-12-19",
-                                "track": "B2",
+                                "id": "9022014001760005",
+                                "time": "01:07",
+                                "date": "2019-12-20",
+                                "track": "C1",
                                 "$": "\n"
                             }
                         },
                         {
-                            "name": "Spårvagn 3",
-                            "sname": "3",
-                            "journeyNumber": "11",
-                            "type": "TRAM",
-                            "id": "9015014500300011",
-                            "direction": "Kålltorp",
-                            "fgColor": "#0071C1",
-                            "bgColor": "#FFFFFF",
+                            "name": "Buss 16",
+                            "sname": "16",
+                            "journeyNumber": "315",
+                            "type": "BUS",
+                            "id": "9015014501600315",
+                            "direction": "Högsbohöjd",
+                            "fgColor": "#006C93",
+                            "bgColor": "#D8E8B0",
                             "stroke": "Solid",
+                            "accessibility": "wheelChair",
                             "Origin": {
                                 "name": "Brunnsparken, Göteborg",
                                 "type": "ST",
-                                "id": "9022014001760004",
-                                "routeIdx": "19",
-                                "time": "06:13",
-                                "date": "2019-12-19",
-                                "track": "B2",
-                                "rtTime": "06:13",
-                                "rtDate": "2019-12-19",
+                                "id": "9022014001760005",
+                                "routeIdx": "14",
+                                "time": "01:16",
+                                "date": "2019-12-20",
+                                "track": "C1",
+                                "rtTime": "01:17",
+                                "rtDate": "2019-12-20",
                                 "$": "\n"
                             },
                             "Destination": {
-                                "name": "Svingeln, Göteborg",
+                                "name": "Kapellplatsen, Göteborg",
                                 "type": "ST",
-                                "id": "9022014006480002",
-                                "routeIdx": "22",
-                                "time": "06:18",
-                                "date": "2019-12-19",
+                                "id": "9022014003760002",
+                                "routeIdx": "18",
+                                "time": "01:21",
+                                "date": "2019-12-20",
                                 "track": "B",
-                                "rtTime": "06:18",
-                                "rtDate": "2019-12-19",
+                                "rtTime": "01:22",
+                                "rtDate": "2019-12-20",
                                 "$": "\n"
                             },
                             "JourneyDetailRef": {
-                                "ref": "https://api.vasttrafik.se/bin/rest.exe/v2/journeyDetail?ref=299862%2F128207%2F250696%2F25395%2F80%3Fdate%3D2019-12-19%26station_evaId%3D1760004%26station_type%3Ddep%26format%3Djson%26"
+                                "ref": "https://api.vasttrafik.se/bin/rest.exe/v2/journeyDetail?ref=400407%2F162613%2F908806%2F320935%2F80%3Fdate%3D2019-12-20%26station_evaId%3D1760005%26station_type%3Ddep%26format%3Djson%26"
                             }
                         }
                     ]
