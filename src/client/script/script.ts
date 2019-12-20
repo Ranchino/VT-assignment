@@ -145,9 +145,9 @@ function printMatchingRoutes(route: any) {
                    
                     showRouteBtn.innerHTML = "Visa alla hållplatser"
                     showRouteBtn.addEventListener("click", (e:Event) => getRoutes(station.Leg.JourneyDetailRef.ref, station.Leg.id));
-                    vehicleNumber.innerHTML += station.Leg.name + " " + station.Leg.Origin.time;
-                    from.innerHTML += "Från " + station.Leg.Origin.name;
-                    to.innerHTML += "Till " + station.Leg.Destination.name; 
+                    vehicleNumber.innerHTML += station.Leg.name;;
+                    from.innerHTML += "Från " + station.Leg.Origin.name + " " + station.Leg.Origin.rtTime || station.Leg.Origin.time;
+                    to.innerHTML += "Till " + station.Leg.Destination.name + " " + station.Leg.Destination.rtTime ||  station.Leg.Destination.time ; 
                     container.append(vehicleNumber, from, journeyContainer, to, showRouteBtn)
 
 
@@ -219,6 +219,7 @@ async function getRoutes(ref: any, id: any) {
         } // body data type must match "Content-Type" header
     });
     const json = await response.json();
+    console.log(json)
     printAllJourneys(json, id)
 }
 
