@@ -13,13 +13,13 @@
  
 
 ### Krav för godkänt:
-Ni skall använda er av Västtrafiks auth 2 autentisering. <br> - [x]
-Uppdatering av access_token skall göras automatiskt då giltighetstiden för en token gått ut (tips, använd er av en egen-skapad middleware).<br> - [x]
-Autentiseringen skall gå genom ett eget api i Node (för G-nivå räcker det att ha ett API/NodeJS server som levererar en access_token).<br> - [x]
-Samtliga hållplatser skall hämtas och sparas i en JSON-fil. Denna hämtning skall alltså inte ske varje gång man skall söka fram en resa.<br>  - [x]
-Användaren skall med hjälp av två input-fält kunna ange ”från och till” för en resa (hållplatser).<br> - [x]
-Användaren skall kunna mata in datum och tid samt kunna välja om tiden är för avgående tid eller ankommande tid (när man vill anlända till destinationen eller när ex. Bussen lämnar hållplatsen).<br>  - [x]
-Samtliga hållplatser den hittade rutten kommer stanna på skall visas upp vid hittad resa. - [x]
+Ni skall använda er av Västtrafiks auth 2 autentisering. <br> 
+Uppdatering av access_token skall göras automatiskt då giltighetstiden för en token gått ut (tips, använd er av en egen-skapad middleware).<br>
+Autentiseringen skall gå genom ett eget api i Node (för G-nivå räcker det att ha ett API/NodeJS server som levererar en access_token).<br> 
+Samtliga hållplatser skall hämtas och sparas i en JSON-fil. Denna hämtning skall alltså inte ske varje gång man skall söka fram en resa.<br>
+Användaren skall med hjälp av två input-fält kunna ange ”från och till” för en resa (hållplatser).<br> 
+Användaren skall kunna mata in datum och tid samt kunna välja om tiden är för avgående tid eller ankommande tid (när man vill anlända till destinationen eller när ex. Bussen lämnar hållplatsen).<br>
+Samtliga hållplatser den hittade rutten kommer stanna på skall visas upp vid hittad resa.
 
 ### Krav för väl godkänt:
 Alla punkter för godkänt är uppfyllda <br>
