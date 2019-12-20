@@ -2,13 +2,11 @@ import { authentication, token } from '../authenticationToken'
 import express, { Request, Response, NextFunction, response } from 'express'
 import axios from 'axios'
 import fs from 'fs'
+import { text } from 'body-parser'
 let router = express.Router()
 
-router.get('/', authentication)
-/* router.get('/', (req: Request, res: Response, next: NextFunction) => {
-    res.status(200).json({ token: token })
-    next()
-}) */
+router.use('/', authentication)
+
 router.get('/', (req: Request, res: Response, next: NextFunction) => {
     let bearer: string = token.tokenType
     let accessToken: string = token.accessToken
@@ -21,7 +19,7 @@ router.get('/', (req: Request, res: Response, next: NextFunction) => {
         fs.readFile('./All_stops.json', 'utf-8', async function(err, data){
             if(err) throw err
             var arrayOfObjects = JSON.parse(data)
-            
+            arrayOfObjects.All_Stops = []
             arrayOfObjects.All_Stops.push(response.data.LocationList)
 
             fs.writeFile('./All_stops.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err){
@@ -59,6 +57,67 @@ router.post('/location', (req: Request, res: Response, next: NextFunction) => {
         }
         res.send(array)
     })
+})
+
+router.post('/getTrips', async function(req: Request, res: Response, next: NextFunction) {
+    let url: string;
+    let busRoutes: any = [];
+    busRoutes = [];
+
+    if (req.body.searchForArrival) {
+        url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&date=${req.body.date}&time=${req.body.time}&searchForArrival=${req.body.searchForArrival}&numTrips=4&format=json`
+    } else {
+        url = `https://api.vasttrafik.se/bin/rest.exe/v2/trip?originId=${req.body.idFrom}&destId=${req.body.idTo}&date=${req.body.date}&time=${req.body.time}&numTrips=4&format=json`
+    }
+    
+    
+    let bearer: string = token.tokenType
+    let accessToken: string = token.accessToken
+
+
+    let tripsAPI = await axios.get(url, {
+        headers: {
+            Authorization: bearer + " " + accessToken
+        }
+    })
+
+    var uri = tripsAPI.data.TripList.Trip[0].Leg.JourneyDetailRef.ref
+    var uri_dec = decodeURIComponent(uri);
+
+    let origin = tripsAPI.data.TripList.Trip[0].Leg.Origin.routeIdx
+    let destination = tripsAPI.data.TripList.Trip[0].Leg.Destination.routeIdx
+    
+    let journeyAPI = await axios.get(uri_dec, {
+        headers: {
+            Authorization: bearer + " " + accessToken
+        }
+    })
+    
+    for (var a = 0; a < journeyAPI.data.JourneyDetail.Stop.length; a++) {
+        if( a >= origin && a <= destination){
+            if(journeyAPI.data.JourneyDetail.Stop[a].rtArrTime === journeyAPI.data.JourneyDetail.Stop[a].arrTime){
+                busRoutes.push(
+                    { 
+                        "name": journeyAPI.data.JourneyDetail.Stop[a].name,
+                        "arrivalTime": journeyAPI.data.JourneyDetail.Stop[a].arrTime
+                    } 
+                )
+            }else {
+               
+                busRoutes.push(
+                    { 
+                        "name": journeyAPI.data.JourneyDetail.Stop[a].name,
+                        "arrivalTime": journeyAPI.data.JourneyDetail.Stop[a].arrTime,
+                        "newTime": journeyAPI.data.JourneyDetail.Stop[a].rtArrTime
+                    }
+                )
+            }
+
+        }
+    }
+    console.log(busRoutes)
+
+
 })
 
 export default router

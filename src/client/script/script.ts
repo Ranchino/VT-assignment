@@ -1,15 +1,29 @@
 console.log("Script");
 
+/* import axios from 'axios'
+
+axios.get("/reger") */
+
+
 
 function switchInputText(){
     let inputFrom = (<HTMLInputElement>document.getElementById("inputFrom")).value;
+    let inputFromData = (<HTMLInputElement>document.getElementById("inputFrom")).dataset.id;
+
     let inputTo = (<HTMLInputElement>document.getElementById("inputTo")).value;
+    let inputToData = (<HTMLInputElement>document.getElementById("inputTo")).dataset.id;
+
 
     if(inputFrom == "" || inputTo == ""){
         alert("fyll in alla fält");
     }else{
         (<HTMLInputElement>document.getElementById("inputFrom")).value = inputTo;
+        (<HTMLInputElement>document.getElementById("inputFrom")).dataset.id = inputToData;
+
+
         (<HTMLInputElement>document.getElementById("inputTo")).value = inputFrom;
+        (<HTMLInputElement>document.getElementById("inputTo")).dataset.id = inputFromData;
+
     }
     
 }
@@ -28,18 +42,60 @@ document.addEventListener('DOMContentLoaded', function () {
 
         event.preventDefault();
 
+        let searchForArrival;
+        let date;
+        let time;
+
+        const idFrom = document.getElementById("inputFrom") as HTMLInputElement;
+        const idTo = document.getElementById("inputTo") as HTMLInputElement;
+        
+        const input = document.getElementById("inlineRadio2") as HTMLInputElement;
+
+        const getDate = document.getElementById("dateForTrip") as HTMLInputElement;
+        const getTime = document.getElementById("timeForTrip") as HTMLInputElement;
+        date = getDate.value
+        time = getTime.value
+        
+        if (input.checked) {
+            searchForArrival = 1
+        }
 
         const response = await fetch('/api/getTrips', {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            body: JSON.stringify({  }),
+            body: JSON.stringify(
+                {  
+                    searchForArrival: searchForArrival,
+                    date: date,
+                    time: time,
+                    idFrom: idFrom.dataset.id,
+                    idTo: idTo.dataset.id,
+                }
+            ),
             headers: {
                 'Content-Type': 'application/json'
             } // body data type must match "Content-Type" header
         });
         const json = await response.json();
-      
+        console.log(json)
+    
     });
 })
+
+function printMatchingRoutes(route: any) {
+    for (var i = 0; i < route.Trip.length; i++) {
+        if (i === 3) {
+            break
+        }
+        console.log(route.Trip[i])
+        const container = document.getElementById("theJourneyContainer")!;
+        const h3 = document.createElement("h3");
+        const p = document.createElement("p");
+        h3.innerHTML = route.Trip[i].Leg.name
+        p.innerHTML = "Från " + route.Trip[i].Leg.Origin.name + " <strong>" + route.Trip[i].Leg.Origin.time + "</strong>";
+        container.append(h3, p)
+
+    }
+}
 
 function getDate(){
     var today: any = new Date();
