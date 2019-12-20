@@ -81,7 +81,21 @@ router.post('/getTrips', async function(req: Request, res: Response, next: NextF
         }
     })
 
-    var uri = tripsAPI.data.TripList.Trip[0].Leg.JourneyDetailRef.ref
+    /* var uri = tripsAPI.data.TripList.Trip[0].Leg.JourneyDetailRef.ref */
+
+    var uri;
+
+    if (req.body.searchForArrival){
+        for (var i = 0; i < tripsAPI.data.TripList.Trip.length; i++ ) {
+            if (i == 3) {
+                uri = tripsAPI.data.TripList.Trip[i].Leg.JourneyDetailRef.ref;
+            }
+        }
+
+    }else{
+        uri = tripsAPI.data.TripList.Trip[0].Leg.JourneyDetailRef.ref
+    }
+   
     var uri_dec = decodeURIComponent(uri);
 
     let origin = tripsAPI.data.TripList.Trip[0].Leg.Origin.routeIdx
