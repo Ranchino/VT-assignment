@@ -3,8 +3,16 @@ console.log("Script");
 /* import axios from 'axios'
 
 axios.get("/reger") */
-
-
+async function initSite(){
+    (<HTMLInputElement>document.getElementById('switchInputText')).addEventListener('click', switchInputText, true);
+    const response = await fetch('http://localhost:3000/api/json', { 
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    getDate()
+}
 
 function switchInputText(){
     let inputFrom = (<HTMLInputElement>document.getElementById("inputFrom")).value;
@@ -26,12 +34,6 @@ function switchInputText(){
 
     }
     
-}
-
-window.onload=function(){
-    
-    (<HTMLInputElement>document.getElementById('switchInputText')).addEventListener('click', switchInputText, true);
-    getDate();
 }
 
 // Test

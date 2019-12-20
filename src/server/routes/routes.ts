@@ -8,9 +8,8 @@ let expireTime: number = 0
 
 router.use('/', authentication)
 
-router.get('/', (req: Request, res: Response, next: NextFunction) => {
+router.get('/json', (req: Request, res: Response, next: NextFunction) => {
     if(Date.now() >= expireTime){
-
         let bearer: string = token.tokenType
         let accessToken: string = token.accessToken
         axios.get('https://api.vasttrafik.se/bin/rest.exe/v2/location.allstops?format=json', {
@@ -25,7 +24,6 @@ router.get('/', (req: Request, res: Response, next: NextFunction) => {
                 var arrayOfObjects = JSON.parse(data)
                 arrayOfObjects.All_Stops = []
                 arrayOfObjects.All_Stops.push(response.data.LocationList)
-
                 fs.writeFile('./All_stops.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err){
                     if(err) throw err
                     console.log("done")
@@ -35,7 +33,9 @@ router.get('/', (req: Request, res: Response, next: NextFunction) => {
             console.log("ERROR: ", error)
         }).then(next)
     }else {
+        console.log("asd")
         next()
+        
     }
 })
 

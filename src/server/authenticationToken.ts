@@ -21,7 +21,6 @@ export async function authentication(Request: Request, Response: Response, next:
             expireTime: response.data.expires_in,
             tokenType: response.data.token_type
         }
-        console.log(response.data.access_token)
     }    
     next()
 }
